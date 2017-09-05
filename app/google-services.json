@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "20213314064",
+    "firebase_url": "https://guitura-43f76.firebaseio.com",
+    "project_id": "guitura-43f76",
+    "storage_bucket": "guitura-43f76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20213314064:android:ab10c34c216af756",
+        "android_client_info": {
+          "package_name": "com.example.albertozaranza.guitura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20213314064-ivq9c2hav3u1okqlpinff808697h2um6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.albertozaranza.guitura",
+            "certificate_hash": "25ad14cfc1c5e400fd66f0baa2d2605a978648dd"
+          }
+        },
+        {
+          "client_id": "20213314064-1lv9mmv5u673205ebdngge76982r037b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3Xp5H6UGDkalc_zFVwIee62EP5N1X3PE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20213314064-1lv9mmv5u673205ebdngge76982r037b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

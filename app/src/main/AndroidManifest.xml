@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.albertozaranza.guitura">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".formularios.frmAtrativosTuristicosNaturais" />
+        <activity android:name=".formularios.frmAtrativosTuristicos" />
+        <activity android:name=".formularios.frmEquipamentoHoteleiro" />
+        <activity android:name=".formularios.frmEquipamentoExtraHoteleiro" />
+        <activity android:name=".formularios.frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento" />
+        <activity android:name=".formularios.frmEntretenimentoOutrosServicos" />
+        <activity android:name=".formularios.frmInfraEstruturaApoioTuristico" />
+        <activity android:name=".formularios.frmSistemaTransporte" />
+        <activity android:name=".formularios.frmSistemaComunicacoes" />
+        <activity android:name=".accounts.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
