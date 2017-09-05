@@ -1289,11 +1289,11 @@
                 android:id="@+id/radioGroupEstadoConservacao">
 
                 <RadioButton
-                    android:id="@+id/radioButtonRuim"
+                    android:id="@+id/radioButtonBom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ruim" />
+                    android:text="Bom" />
 
                 <RadioButton
                     android:id="@+id/radioButtonRegular"
@@ -1303,11 +1303,11 @@
                     android:text="Regular" />
 
                 <RadioButton
-                    android:id="@+id/radioButtonBom"
+                    android:id="@+id/radioButtonRuim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Bom" />
+                    android:text="Ruim" />
 
             </RadioGroup>
 

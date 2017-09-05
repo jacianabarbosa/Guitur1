@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity" />
+        <activity android:name=".main.MainActivity"/>
         <activity android:name=".formularios.frmAtrativosTuristicosNaturais" />
         <activity android:name=".formularios.frmAtrativosTuristicos" />
         <activity android:name=".formularios.frmEquipamentoHoteleiro" />
@@ -24,7 +24,7 @@
         <activity android:name=".formularios.frmInfraEstruturaApoioTuristico" />
         <activity android:name=".formularios.frmSistemaTransporte" />
         <activity android:name=".formularios.frmSistemaComunicacoes" />
-        <activity android:name=".accounts.LoginActivity">
+        <activity android:name=".accounts.LoginActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

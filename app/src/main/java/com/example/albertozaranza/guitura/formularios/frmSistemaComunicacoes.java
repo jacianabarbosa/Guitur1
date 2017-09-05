@@ -16,14 +16,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmSistemaComunicacoes extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo, editTextSubtipo, editTextCodigo, editTextUF,
             editTextMunicipio, editTextDistrito, editTextOrdem, editTextEstabelecimento,
             editTextEndereco, editTextPublico, editTextPrivado, editTextAtendimento, editTextEspecificacao;
 
+    // Conexão com o Firebase
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    SistemaComunicacoes sc = new SistemaComunicacoes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -56,6 +57,10 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
+            // Instanciação da classe
+            SistemaComunicacoes sc = new SistemaComunicacoes();
+
+            // Atribuição de valores
             sc.setAuth(firebaseUser.getEmail());
             sc.setCategoria(editTextCategoria.getText().toString());
             sc.setTipo(editTextTipo.getText().toString());
@@ -72,10 +77,14 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
             sc.setAtendimento(editTextAtendimento.getText().toString());
             sc.setEspecificacao(editTextEspecificacao.getText().toString());
 
+            // Inserção no banco
             firebaseReference.child("sistema_comunicacoes").push().setValue(sc);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dado salvo com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }

@@ -16,16 +16,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmSistemaTransporte extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo, editTextSubtipo,
             editTextCodigo, editTextUF, editTextMunicipio, editTextDistrito,
             editTextDenominacao, editTextEndereco, editTextTrecho, editTextEmpresa,
             editTextExtensao, editTextKM, editTextTempo, editTextHoras, editTextTipoVeiculo,
             editTextHorarios;
 
+    // Conexão com o Firebase
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    SistemaTransportes st = new SistemaTransportes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class frmSistemaTransporte extends AppCompatActivity {
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -56,10 +57,15 @@ public class frmSistemaTransporte extends AppCompatActivity {
 
     }
 
+    // Evento de clique no botão Salvar
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
+            // Instanciação da classe
+            SistemaTransportes st = new SistemaTransportes();
+
+            // Atribuição de valores
             st.setAuth(firebaseUser.getEmail());
             st.setCategoria(editTextCategoria.getText().toString());
             st.setTipo(editTextTipo.getText().toString());
@@ -79,10 +85,14 @@ public class frmSistemaTransporte extends AppCompatActivity {
             st.setTipo_veiculo(editTextTipoVeiculo.getText().toString());
             st.setHorarios(editTextHorarios.getText().toString());
 
+            // Inserção no banco
             firebaseReference.child("sistema_transporte").push().setValue(st);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dado salvo com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }

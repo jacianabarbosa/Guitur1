@@ -10,9 +10,8 @@ public class AtrativosTuristicos {
             distrito, hierarquia, nome, localizacao, localidade_proxima,
             distancia, acesso_mais_utilizado, detalhamento, descricao, protecao,
             meses_maior_movimentacao, integra_roteiros_citar, transportes_tipo_frequencia,
-            local_produto, observacoes, remissivas, auth;
-
-    private String transporte, privacidade, qualidade, ingresso, origem_visitante, integra_roteiro;
+            local_produto, observacoes, remissivas, auth, transporte, privacidade, qualidade,
+            ingresso, origem_visitante, integra_roteiro, folhetos, visita_guiada;
 
     public String getTransporte() {
         return transporte;
@@ -247,5 +246,21 @@ public class AtrativosTuristicos {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getFolhetos() {
+        return folhetos;
+    }
+
+    public void setFolhetos(String folhetos) {
+        this.folhetos = folhetos;
+    }
+
+    public String getVisita_guiada() {
+        return visita_guiada;
+    }
+
+    public void setVisita_guiada(String visita_guiada) {
+        this.visita_guiada = visita_guiada;
     }
 }

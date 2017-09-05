@@ -18,10 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    Infraestrutura inf = new Infraestrutura();
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextCodigo,
             editTextUF, editTextMunicipio, editTextCep, editTextDDD, editTextDistanciaCapital,
             editTextMunicipiosLimitrofes, editTextPopulacaoTotal, editTextPopulacaoUrbana,
@@ -45,12 +42,16 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
             editTextFeriadosLocal, editTextDomiciliosAtendidos, editTextEmpresaAbastecimento,
             editTextJornalLocal, editTextObservacoes;
 
-    private RadioGroup clima, campoRepouso, asfalto, estadoConservasao,
-            orgaoOficial, esgoto, energia, limpezaPublica, estacaoEmissora,
-            radio, planosUrbanisticos;
+    private String clima_stg, campoRepouso_stg, asfalto_stg, estadoConservasao_stg,
+            orgaoOficial_stg, esgoto_stg, energia_stg, limpezaPublica_stg, estacaoEmissora_stg,
+            radio_stg, planosUrbanisticos_stg;
 
+    // Declaração CheckBox
     private CheckBox rodoviario, ferroviario, aereo, federal, estadual, muninicipal,
             taxi, onibus, bonde, animal, outros, agua, poco, rio;
+
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,17 +127,177 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
         editTextJornalLocal = (EditText) findViewById(R.id.editTextJornaisLocaisCitar);
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
 
-        clima = (RadioGroup) findViewById(R.id.radioGroupClimas);
-        campoRepouso = (RadioGroup) findViewById(R.id.radioGroupCamposRepouso);
-        asfalto = (RadioGroup) findViewById(R.id.radioGroupAsfaltadas);
-        estadoConservasao = (RadioGroup) findViewById(R.id.radioGroupEstadoConservacao);
-        orgaoOficial = (RadioGroup) findViewById(R.id.radioGroupOrgaosOficiais);
-        esgoto = (RadioGroup) findViewById(R.id.radioGroupRedeEsgotos);
-        energia = (RadioGroup) findViewById(R.id.radioGroupEnergiasEleticas);
-        limpezaPublica = (RadioGroup) findViewById(R.id.radioGroupLimpezasPublicas);
-        estacaoEmissora = (RadioGroup) findViewById(R.id.radioGroupEstacoesEmissoras);
-        radio = (RadioGroup) findViewById(R.id.radioGroupEstacoesEmissorasRadios);
-        planosUrbanisticos = (RadioGroup) findViewById(R.id.radioGroupPlanosUrbanisticos);
+        RadioGroup clima = (RadioGroup) findViewById(R.id.radioGroupClimas);
+        RadioGroup campoRepouso = (RadioGroup) findViewById(R.id.radioGroupCamposRepouso);
+        RadioGroup asfalto = (RadioGroup) findViewById(R.id.radioGroupAsfaltadas);
+        RadioGroup estadoConservasao = (RadioGroup) findViewById(R.id.radioGroupEstadoConservacao);
+        RadioGroup orgaoOficial = (RadioGroup) findViewById(R.id.radioGroupOrgaosOficiais);
+        RadioGroup esgoto = (RadioGroup) findViewById(R.id.radioGroupRedeEsgotos);
+        RadioGroup energia = (RadioGroup) findViewById(R.id.radioGroupEnergiasEleticas);
+        RadioGroup limpezaPublica = (RadioGroup) findViewById(R.id.radioGroupLimpezasPublicas);
+        RadioGroup estacaoEmissora = (RadioGroup) findViewById(R.id.radioGroupEstacoesEmissoras);
+        RadioGroup radio = (RadioGroup) findViewById(R.id.radioGroupEstacoesEmissorasRadios);
+        RadioGroup planosUrbanisticos = (RadioGroup) findViewById(R.id.radioGroupPlanosUrbanisticos);
+
+        clima.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonEquatorial:
+                        clima_stg = "equatorial";
+                        break;
+                    case R.id.radioButtonTropical:
+                        clima_stg = "tropical";
+                        break;
+                    case R.id.radioButtonTemperado:
+                        clima_stg = "temperado";
+                        break;
+                }
+            }
+        });
+
+        campoRepouso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonCampoSim:
+                        campoRepouso_stg = "sim";
+                        break;
+                    case R.id.radioButtonCampoNao:
+                        campoRepouso_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        asfalto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonAsfaltadaSim:
+                        asfalto_stg = "sim";
+                        break;
+                    case R.id.radioButtonAsfaltadaNao:
+                        asfalto_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        estadoConservasao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonBom:
+                        estadoConservasao_stg = "bom";
+                        break;
+                    case R.id.radioButtonRegular:
+                        estadoConservasao_stg = "regular";
+                        break;
+                    case R.id.radioButtonRuim:
+                        estadoConservasao_stg = "ruim";
+                        break;
+                }
+            }
+        });
+
+        orgaoOficial.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonOrgaoSim:
+                        orgaoOficial_stg = "sim";
+                        break;
+                    case R.id.radioButtonOrgaoNao:
+                        orgaoOficial_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        esgoto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonEsgotoSim:
+                        esgoto_stg = "sim";
+                        break;
+                    case R.id.radioButtonEsgotoNao:
+                        esgoto_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        energia.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonGerador:
+                        energia_stg = "gerador";
+                        break;
+                    case R.id.radioButtonRedeEletrica:
+                        energia_stg = "rede elétrica";
+                        break;
+                }
+            }
+        });
+
+        limpezaPublica.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonLimpezaSim:
+                        limpezaPublica_stg = "sim";
+                        break;
+                    case R.id.radioButtonLimpezaNao:
+                        limpezaPublica_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        estacaoEmissora.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonEstacaoSim:
+                        estacaoEmissora_stg = "sim";
+                        break;
+                    case R.id.radioButtonEstacaoNao:
+                        estacaoEmissora_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonEstacaoRadioSim:
+                        radio_stg = "sim";
+                        break;
+                    case R.id.radioButtonEstacaoNao:
+                        radio_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        planosUrbanisticos.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonPlanoSim:
+                        planosUrbanisticos_stg = "sim";
+                        break;
+                    case R.id.radioButtonPlanoNao:
+                        planosUrbanisticos_stg = "não";
+                        break;
+                }
+            }
+        });
 
         rodoviario = (CheckBox) findViewById(R.id.checkBoxRodoviario);
         ferroviario = (CheckBox) findViewById(R.id.checkBoxFerroviario);
@@ -157,6 +318,8 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Infraestrutura inf = new Infraestrutura();
 
             inf.setAuth(firebaseUser.getEmail());
             inf.setCategoria(editTextCategoria.getText().toString());
@@ -225,220 +388,100 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
             inf.setJornal_local(editTextJornalLocal.getText().toString());
             inf.setObservacoes(editTextObservacoes.getText().toString());
 
-            clima.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonEquatorial:
-                            inf.setClima("equatorial");
-                            break;
-                        case R.id.radioButtonTropical:
-                            inf.setClima("tropical");
-                            break;
-                        case R.id.radioButtonTemperado:
-                            inf.setClima("temperado");
-                            break;
-                    }
-                }
-            });
-
-            campoRepouso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonCampoSim:
-                            inf.setCampo_repouso("sim");
-                            break;
-                        case R.id.radioButtonCampoNao:
-                            inf.setCampo_repouso("não");
-                            break;
-                    }
-                }
-            });
-
-            asfalto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonAsfaltadaSim:
-                            inf.setAsfalto("sim");
-                            break;
-                        case R.id.radioButtonAsfaltadaNao:
-                            inf.setAsfalto("não");
-                            break;
-                    }
-                }
-            });
-
-            estadoConservasao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonBom:
-                            inf.setEstado_conservasao("bom");
-                            break;
-                        case R.id.radioButtonRegular:
-                            inf.setEstado_conservasao("regular");
-                            break;
-                        case R.id.radioButtonRuim:
-                            inf.setEstado_conservasao("ruim");
-                            break;
-                    }
-                }
-            });
-
-            orgaoOficial.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonOrgaoSim:
-                            inf.setOrgao_oficial("sim");
-                            break;
-                        case R.id.radioButtonOrgaoNao:
-                            inf.setOrgao_oficial("não");
-                            break;
-                    }
-                }
-            });
-
-            esgoto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonEsgotoSim:
-                            inf.setEsgoto("sim");
-                            break;
-                        case R.id.radioButtonEsgotoNao:
-                            inf.setEsgoto("não");
-                            break;
-                    }
-                }
-            });
-
-            energia.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonGerador:
-                            inf.setEnergia("gerador");
-                            break;
-                        case R.id.radioButtonRedeEletrica:
-                            inf.setEnergia("rede elétrica");
-                            break;
-                    }
-                }
-            });
-
-            limpezaPublica.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonLimpezaSim:
-                            inf.setLimpeza_publica("sim");
-                            break;
-                        case R.id.radioButtonLimpezaNao:
-                            inf.setLimpeza_publica("não");
-                            break;
-                    }
-                }
-            });
-
-            estacaoEmissora.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonEstacaoSim:
-                            inf.setEstacao_emissora("sim");
-                            break;
-                        case R.id.radioButtonEstacaoNao:
-                            inf.setEstacao_emissora("não");
-                            break;
-                    }
-                }
-            });
-
-            radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonEstacaoRadioSim:
-                            inf.setRadio("sim");
-                            break;
-                        case R.id.radioButtonEstacaoNao:
-                            inf.setRadio("não");
-                            break;
-                    }
-                }
-            });
-
-            planosUrbanisticos.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonPlanoSim:
-                            inf.setPlanos_urbanisticos("sim");
-                            break;
-                        case R.id.radioButtonPlanoNao:
-                            inf.setPlanos_urbanisticos("não");
-                            break;
-                    }
-                }
-            });
+            inf.setClima(clima_stg);
+            inf.setCampo_repouso(campoRepouso_stg);
+            inf.setAsfalto(asfalto_stg);
+            inf.setEstado_conservasao(estadoConservasao_stg);
+            inf.setOrgao_oficial(orgaoOficial_stg);
+            inf.setEsgoto(esgoto_stg);
+            inf.setEnergia(energia_stg);
+            inf.setLimpeza_publica(limpezaPublica_stg);
+            inf.setEstacao_emissora(estacaoEmissora_stg);
+            inf.setRadio(radio_stg);
+            inf.setPlanos_urbanisticos(planosUrbanisticos_stg);
 
             if(rodoviario.isChecked()){
                 inf.setRodoviario("true");
+            }else {
+                inf.setRodoviario("false");
             }
 
             if(ferroviario.isChecked()){
                 inf.setFerroviario("true");
+            }else {
+                inf.setFerroviario("false");
             }
 
             if(aereo.isChecked()){
                 inf.setAereo("true");
+            }else {
+                inf.setAereo("false");
             }
 
             if(federal.isChecked()){
                 inf.setFederal("true");
+            }else {
+                inf.setFederal("false");
             }
 
             if(estadual.isChecked()){
                 inf.setEstadual("true");
+            }else {
+                inf.setEstadual("false");
             }
 
             if(muninicipal.isChecked()){
                 inf.setMuninicipal("true");
+            }else {
+                inf.setMuninicipal("false");
             }
 
             if(taxi.isChecked()){
                 inf.setTaxi("true");
+            }else {
+                inf.setTaxi("false");
             }
 
             if(onibus.isChecked()){
                 inf.setOnibus("true");
+            }else {
+                inf.setOnibus("false");
             }
 
             if(bonde.isChecked()){
                 inf.setBonde("true");
+            }else {
+                inf.setBonde("false");
             }
 
             if(animal.isChecked()){
                 inf.setAnimal("true");
+            }else {
+                inf.setAnimal("false");
             }
 
             if(outros.isChecked()){
                 inf.setOutros("true");
+            }else {
+                inf.setOutros("false");
             }
 
             if(agua.isChecked()){
                 inf.setAgua("true");
+            }else {
+                inf.setAgua("false");
             }
 
             if(poco.isChecked()){
                 inf.setPoco("true");
+            }else {
+                inf.setPoco("false");
             }
 
             if(rio.isChecked()){
                 inf.setRio("true");
+            }else {
+                inf.setRio("false");
             }
 
             firebaseReference.child("infraestrutura_de_apoio_turistico").push().setValue(inf);

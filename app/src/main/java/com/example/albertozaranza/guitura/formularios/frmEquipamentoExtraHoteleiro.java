@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
 
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo, editTextSubtipo, editTextCodigo, editTextUF, editTextMunicipio,
             editTextDistrito, editTextHierarquia, editTextDenominacao, editTextLocalizacao, editTextTelefone, editTextFax,
             editTextHomepage,
@@ -29,15 +30,18 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
             editTextCantinaNumero, editTextFarmaciaNumero, editTextRestauranteNumero,
             editTextBarracaNumero, editTextTrailerNumero, editTextOutrosNumero, editTextConvenioNome, editTextObservacao;
 
+    // Declaração CheckBox
     private CheckBox administracao, sanitario, quente, frio, quadra, churrascaria, prato, roupa, iluminacao,
             tomada, cantina, farmacia, restaurante, barraca, trailer, outros;
 
-    private RadioGroup transporte, privacidade, condicao_acesso, propriedade, area_cercada, socios, convenio;
+    // Strings
+    private String transporte_stg = "", privacidade_stg = "", condicao_acesso_stg = "", propriedade_stg = "",
+            area_cercada_stg = "", socios_stg = "", convenio_stg = "";
 
+    // Conexão com o Firebase
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
     private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    EquipamentoExtraHoteleiro ext = new EquipamentoExtraHoteleiro();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -87,14 +92,124 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
         editTextConvenioNome = (EditText) findViewById(R.id.editTextQualConvenio);
         editTextObservacao = (EditText) findViewById(R.id.editTextObservacoesComplementares);
 
-        transporte = (RadioGroup) findViewById(R.id.radioGroupMeiosDeAcesso);
-        privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
-        condicao_acesso = (RadioGroup) findViewById(R.id.radioGroupCondicoesDeAcesso);
-        propriedade = (RadioGroup) findViewById(R.id.radioGroupPropriedades);
-        area_cercada = (RadioGroup) findViewById(R.id.radioGroupAreasCercadas);
-        socios = (RadioGroup) findViewById(R.id.radioGroupAceitaSocio);
-        convenio = (RadioGroup) findViewById(R.id.radioGroupTemConvenios);
+        // Atribuição dos RadioGroup
+        RadioGroup transporte = (RadioGroup) findViewById(R.id.radioGroupMeiosDeAcesso);
+        RadioGroup privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
+        RadioGroup condicao_acesso = (RadioGroup) findViewById(R.id.radioGroupCondicoesDeAcesso);
+        RadioGroup propriedade = (RadioGroup) findViewById(R.id.radioGroupPropriedades);
+        RadioGroup area_cercada = (RadioGroup) findViewById(R.id.radioGroupAreasCercadas);
+        RadioGroup socios = (RadioGroup) findViewById(R.id.radioGroupAceitaSocio);
+        RadioGroup convenio = (RadioGroup) findViewById(R.id.radioGroupTemConvenios);
 
+        // Verificação de opção dos RadioGroup
+        transporte.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonRodoviario:
+                        transporte_stg = "rodoviario";
+                        break;
+                    case R.id.radioButtonFerroviario:
+                        transporte_stg = "ferroviario";
+                        break;
+                    case R.id.radioButtonHidroviario:
+                        transporte_stg = "hidroviario";
+                        break;
+                    case R.id.radioButtonAereo:
+                        transporte_stg = "aereo";
+                        break;
+                }
+            }
+        });
+
+        privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonP:
+                        privacidade_stg = "privativo";
+                        break;
+                    case R.id.radioButtonNP:
+                        privacidade_stg = "não privativo";
+                        break;
+                }
+            }
+        });
+
+        condicao_acesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonBom:
+                        condicao_acesso_stg = "bom";
+                        break;
+                    case R.id.radioButtonRegular:
+                        condicao_acesso_stg = "regular";
+                        break;
+                    case R.id.radioButtonRuim:
+                        condicao_acesso_stg = "ruim";
+                        break;
+                }
+            }
+        });
+
+        propriedade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonPublica:
+                        propriedade_stg = "publica";
+                        break;
+                    case R.id.radioButtonPrivada:
+                        propriedade_stg = "privada";
+                        break;
+                }
+            }
+        });
+
+        area_cercada.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonAreaSim:
+                        area_cercada_stg = "sim";
+                        break;
+                    case R.id.radioButtonAreaNao:
+                        area_cercada_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        socios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSocioSim:
+                        socios_stg = "sim";
+                        break;
+                    case R.id.radioButtonSocioNao:
+                        socios_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        convenio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonConvenioSim:
+                        convenio_stg = "sim";
+                        break;
+                    case R.id.radioButtonConvenioNao:
+                        convenio_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        // Atribuição dos CheckBox
         administracao = (CheckBox) findViewById(R.id.checkBoxAdministracao);
         sanitario = (CheckBox) findViewById(R.id.checkBoxSanitario);
         quente = (CheckBox) findViewById(R.id.checkBoxQuente);
@@ -114,10 +229,15 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
 
     }
 
+    // Evento de clique no botão Salvar
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
+            // Instanciação da classe
+            EquipamentoExtraHoteleiro ext = new EquipamentoExtraHoteleiro();
+
+            // Atribuição de valores
             ext.setAuth(firebaseUser.getEmail());
             ext.setCategoria(editTextCategoria.getText().toString());
             ext.setTipo(editTextTipo.getText().toString());
@@ -157,182 +277,119 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
             ext.setOutros_numero(editTextOutrosNumero.getText().toString());
             ext.setConvenio_nome(editTextConvenioNome.getText().toString());
             ext.setObservacao(editTextObservacao.getText().toString());
+            ext.setTransporte(transporte_stg);
+            ext.setPrivacidade(privacidade_stg);
+            ext.setCondicao_acesso(condicao_acesso_stg);
+            ext.setPropriedade(propriedade_stg);
+            ext.setArea_cercada(area_cercada_stg);
+            ext.setSocios(socios_stg);
+            ext.setConvenio(convenio_stg);
 
-            transporte.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonRodoviario:
-                            ext.setTransporte("rodoviario");
-                            break;
-                        case R.id.radioButtonFerroviario:
-                            ext.setTransporte("ferroviario");
-                            break;
-                        case R.id.radioButtonHidroviario:
-                            ext.setTransporte("hidroviario");
-                            break;
-                        case R.id.radioButtonAereo:
-                            ext.setTransporte("aereo");
-                            break;
-                    }
-                }
-            });
-
-            privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonP:
-                            ext.setPrivacidade("privativo");
-                            break;
-                        case R.id.radioButtonNP:
-                            ext.setPrivacidade("não privativo");
-                            break;
-                    }
-                }
-            });
-
-            condicao_acesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonBom:
-                            ext.setCondicao_acesso("bom");
-                            break;
-                        case R.id.radioButtonRegular:
-                            ext.setCondicao_acesso("regular");
-                            break;
-                        case R.id.radioButtonRuim:
-                            ext.setCondicao_acesso("ruim");
-                            break;
-                    }
-                }
-            });
-
-            propriedade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonPublica:
-                            ext.setPrivacidade("publica");
-                            break;
-                        case R.id.radioButtonPrivada:
-                            ext.setPrivacidade("privada");
-                            break;
-                    }
-                }
-            });
-
-            area_cercada.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonAreaSim:
-                            ext.setPrivacidade("sim");
-                            break;
-                        case R.id.radioButtonAreaNao:
-                            ext.setPrivacidade("não");
-                            break;
-                    }
-                }
-            });
-
-            socios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSocioSim:
-                            ext.setPrivacidade("sim");
-                            break;
-                        case R.id.radioButtonSocioNao:
-                            ext.setPrivacidade("não");
-                            break;
-                    }
-                }
-            });
-
-            convenio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonConvenioSim:
-                            ext.setPrivacidade("sim");
-                            break;
-                        case R.id.radioButtonConvenioNao:
-                            ext.setPrivacidade("não");
-                            break;
-                    }
-                }
-            });
-
+            // Verificação das CheckBox
             if(administracao.isChecked()){
                 ext.setAdministracao("true");
+            }else {
+                ext.setAdministracao("false");
             }
 
             if(sanitario.isChecked()){
                 ext.setSanitario("true");
+            }else {
+                ext.setSanitario("false");
             }
 
             if(quente.isChecked()){
                 ext.setQuente("true");
+            }else {
+                ext.setQuente("false");
             }
 
             if(frio.isChecked()){
                 ext.setFrio("true");
+            }else {
+                ext.setFrio("false");
             }
 
             if(quadra.isChecked()){
                 ext.setQuadra("true");
+            }else {
+                ext.setQuadra("false");
             }
 
             if(churrascaria.isChecked()){
                 ext.setChurrascaria("true");
+            }else {
+                ext.setChurrascaria("false");
             }
 
             if(prato.isChecked()){
                 ext.setPrato("true");
+            }else {
+                ext.setPrato("false");
             }
 
             if(roupa.isChecked()){
                 ext.setRoupa("true");
+            }else {
+                ext.setRoupa("false");
             }
 
             if(iluminacao.isChecked()){
                 ext.setIluminacao("true");
+            }else {
+                ext.setIluminacao("false");
             }
 
             if(tomada.isChecked()){
                 ext.setTomada("true");
+            }else {
+                ext.setTomada("false");
             }
 
             if(cantina.isChecked()){
                 ext.setCantina("true");
+            }else {
+                ext.setCantina("false");
             }
 
             if(farmacia.isChecked()){
                 ext.setFarmacia("true");
+            }else {
+                ext.setFarmacia("false");
             }
 
             if(restaurante.isChecked()){
                 ext.setRestaurante("true");
+            }else {
+                ext.setRestaurante("false");
             }
 
             if(barraca.isChecked()){
                 ext.setBarraca("true");
+            }else {
+                ext.setBarraca("false");
             }
 
             if(trailer.isChecked()){
                 ext.setTrailer("true");
+            }else {
+                ext.setTrailer("false");
             }
 
             if(outros.isChecked()){
                 ext.setOutros("true");
+            }else {
+                ext.setOutros("false");
             }
 
+            // Inserção no banco
             firebaseReference.child("equipamento_extra_hoteleiro_at").push().setValue(ext);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dado salvo com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }

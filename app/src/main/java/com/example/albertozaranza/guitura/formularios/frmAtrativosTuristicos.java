@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,13 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmAtrativosTuristicos extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    AtrativosTuristicos at = new AtrativosTuristicos();
-
-    /* COMPONENTES */
-
-    // EditText
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo ,editTextSubtipo, editTextCodigo,
             editTextUF, editTextMunicipio, editTextDistrito, editTextHierarquia, editTextNome,
             editTextLocalizacao, editTextLocalidadeProxima, editTextDistancia, editTextAcessoMaisUtilizado,
@@ -31,8 +26,15 @@ public class frmAtrativosTuristicos extends AppCompatActivity {
             editTextIntegraRoteirosCitar, editTextTransportesTipoFrequencia, editTextLocalProduto,
             editTextObservacoes, editTextRemissivas;
 
-    private RadioGroup transportes, privacidade, qualidade, ingresso, origemVisitante, integraRoteiro;
+    // Declaração CheckBox
+    private CheckBox visitaGuiada, folhetos;
 
+    // Strings
+    private String transportes_stg = "", privacidade_stg = "", qualidade_stg = "", ingresso_stg = "",
+            origemVisitante_stg = "", integraRoteiro_stg = "";
+
+    // Conexão com o Firebase
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -40,11 +42,11 @@ public class frmAtrativosTuristicos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_atrativos_turisticos);
 
-        // Declaração e chamada de evento do botão de save
+        // Atribuição e chamada de evento do evento de clique do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
-        // Declaração dos editText
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -68,19 +70,132 @@ public class frmAtrativosTuristicos extends AppCompatActivity {
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
         editTextRemissivas = (EditText) findViewById(R.id.editTextRemissivas);
 
-        transportes = (RadioGroup) findViewById(R.id.radioGroupTransportes);
-        privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
-        qualidade = (RadioGroup) findViewById(R.id.radioGroupEstadoConservacao);
-        ingresso = (RadioGroup) findViewById(R.id.radioGroupIngresso);
-        origemVisitante = (RadioGroup) findViewById(R.id.radioGroupOrigemVisitantes);
-        integraRoteiro = (RadioGroup) findViewById(R.id.radioGroupRoteiros);
+        // Atribuição dos RadioGroup
+        RadioGroup transportes = (RadioGroup) findViewById(R.id.radioGroupTransportes);
+        RadioGroup privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
+        RadioGroup qualidade = (RadioGroup) findViewById(R.id.radioGroupEstadoConservacao);
+        RadioGroup ingresso = (RadioGroup) findViewById(R.id.radioGroupIngresso);
+        RadioGroup origemVisitante = (RadioGroup) findViewById(R.id.radioGroupOrigemVisitantes);
+        RadioGroup integraRoteiro = (RadioGroup) findViewById(R.id.radioGroupRoteiros);
+
+        // Verificação de opção dos RadioGroup
+        transportes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonRodoviario:
+                        transportes_stg = "rodoviario";
+                        break;
+                    case R.id.radioButtonFerroviario:
+                        transportes_stg = "ferroviario";
+                        break;
+                    case R.id.radioButtonHidroviario:
+                        transportes_stg = "hidroviario";
+                        break;
+                    case R.id.radioButtonAereo:
+                        transportes_stg = "aereo";
+                        break;
+                }
+            }
+        });
+
+        privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonP:
+                        privacidade_stg = "privativo";
+                        break;
+                    case R.id.radioButtonNP:
+                        privacidade_stg = "não privativo";
+                        break;
+                }
+            }
+        });
+
+        qualidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonBomQualidade:
+                        qualidade_stg = "bom";
+                        break;
+                    case R.id.radioButtonRegularQualidade:
+                        qualidade_stg = "regular";
+                        break;
+                    case R.id.radioButtonRuimQualidade:
+                        qualidade_stg = "ruim";
+                        break;
+                }
+            }
+        });
+
+        ingresso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.radioButtonPago:
+                        ingresso_stg = "pago";
+                        break;
+                    case R.id.radioButtonGratuito:
+                        ingresso_stg = "gratuito";
+                        break;
+                    case R.id.radioButtonNaoExiste:
+                        ingresso_stg = "não existe";
+                        break;
+                }
+            }
+        });
+
+        origemVisitante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonInternacional:
+                        origemVisitante_stg = "internacional";
+                        break;
+                    case R.id.radioButtonNacional:
+                        origemVisitante_stg = "nacional";
+                        break;
+                    case R.id.radioButtonRegional:
+                        origemVisitante_stg = "regional";
+                        break;
+                    case R.id.radioButtonLocal:
+                        origemVisitante_stg = "local";
+                        break;
+                }
+            }
+        });
+
+        integraRoteiro.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSim:
+                        integraRoteiro_stg = "sim";
+                        break;
+                    case R.id.radioButtonNao:
+                        integraRoteiro_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        // Atribuição dos CheckBox
+        visitaGuiada = (CheckBox) findViewById(R.id.checkBoxVisitaGuiada);
+        folhetos = (CheckBox) findViewById(R.id.checkBoxFolhetos);
 
     }
 
+    // Evento de clique no botão Salvar
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
+            // Instanciação da classe
+            AtrativosTuristicos at = new AtrativosTuristicos();
+
+            // Atribuição de valores
             at.setAuth(firebaseUser.getEmail());
             at.setCategoria(editTextCategoria.getText().toString());
             at.setTipo(editTextTipo.getText().toString());
@@ -104,96 +219,34 @@ public class frmAtrativosTuristicos extends AppCompatActivity {
             at.setLocal_produto(editTextLocalProduto.getText().toString());
             at.setObservacoes(editTextObservacoes.getText().toString());
             at.setRemissivas(editTextRemissivas.getText().toString());
+            at.setTransporte(transportes_stg);
+            at.setPrivacidade(privacidade_stg);
+            at.setQualidade(qualidade_stg);
+            at.setIngresso(ingresso_stg);
+            at.setOrigem_visitante(origemVisitante_stg);
+            at.setIntegra_roteiro(integraRoteiro_stg);
 
-            transportes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonRodoviario:
-                            at.setTransporte("rodoviario");
-                            break;
-                        case R.id.radioButtonFerroviario:
-                            at.setTransporte("ferroviario");
-                            break;
-                        case R.id.radioButtonHidroviario:
-                            at.setTransporte("hidroviario");
-                            break;
-                        case R.id.radioButtonAereo:
-                            at.setTransporte("aereo");
-                            break;
-                    }
-                }
-            });
+            // Verificação das CheckBox
+            if(visitaGuiada.isChecked()){
+                at.setVisita_guiada("true");
+            }else {
+                at.setVisita_guiada("false");
+            }
 
-            privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonP:
-                            at.setPrivacidade("privativo");
-                            break;
-                        case R.id.radioButtonNP:
-                            at.setPrivacidade("não privativo");
-                            break;
-                    }
-                }
-            });
+            if(folhetos.isChecked()){
+                at.setFolhetos("true");
+            }else {
+                at.setFolhetos("false");
+            }
 
-            qualidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonBomQualidade:
-                            at.setQualidade("bom");
-                            break;
-                        case R.id.radioButtonRegularQualidade:
-                            at.setQualidade("regular");
-                            break;
-                        case R.id.radioButtonRuimQualidade:
-                            at.setQualidade("ruim");
-                            break;
-                    }
-                }
-            });
-
-            origemVisitante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonInternacional:
-                            at.setOrigem_visitante("internacional");
-                            break;
-                        case R.id.radioButtonNacional:
-                            at.setOrigem_visitante("nacional");
-                            break;
-                        case R.id.radioButtonRegional:
-                            at.setOrigem_visitante("regional");
-                            break;
-                        case R.id.radioButtonLocal:
-                            at.setOrigem_visitante("local");
-                            break;
-                    }
-                }
-            });
-
-            integraRoteiro.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSim:
-                            at.setIntegra_roteiro("sim");
-                            break;
-                        case R.id.radioButtonNao:
-                            at.setIntegra_roteiro("não");
-                            break;
-                    }
-                }
-            });
-
+            // Inserção no banco
             firebaseReference.child("atratitivo_turistico").push().setValue(at);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dado salvo com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }

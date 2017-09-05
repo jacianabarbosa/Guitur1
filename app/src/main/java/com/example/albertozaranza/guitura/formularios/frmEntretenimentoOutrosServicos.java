@@ -17,27 +17,30 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    Entretenimento et = new Entretenimento();
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo, editTextSubtipo,
             editTextCodigo, editTextUF, editTextMunicipio, editTextDistrito,
             editTextDenominacao, editTextLocalizacao, editTextTelefone, editTextFax, editTextHomepage,
             editTextEmail, editTextRegistro, editTextLocalidadeProxima, editTextDistancia, editTextLocaliacaoProxima,
             editTextCaracterizacaoEquipamento, editTextCapacidadeEquipamento, editTextServicosOferecidos, editTextObservacoes;
 
-    private RadioGroup transporte, privacidade, transporteUrbano;
+    // Strings
+    private String transporte_stg = "", privacidade_stg = "", transporteUrbano_stg = "";
 
+    // Conexão com o Firebase
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_entretenimento_outros_servicos);
 
+        // Atribuição e chamada de evento do evento de clique do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -60,16 +63,79 @@ public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
         editTextServicosOferecidos = (EditText) findViewById(R.id.editTextServicosOferecidos);
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
 
-        transporte = (RadioGroup) findViewById(R.id.radioGroupTransportesAcesso);
-        privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
-        transporteUrbano = (RadioGroup) findViewById(R.id.radioGroupTransportes);
+        // Atribuição dos RadioGroup
+        RadioGroup transporte = (RadioGroup) findViewById(R.id.radioGroupTransportesAcesso);
+        RadioGroup privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
+        RadioGroup transporteUrbano = (RadioGroup) findViewById(R.id.radioGroupTransportes);
+
+        // Verificação de opção dos RadioGroup
+        transporte.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonRodoviario:
+                        transporte_stg = "rodoviario";
+                        break;
+                    case R.id.radioButtonFerroviario:
+                        transporte_stg = "ferroviario";
+                        break;
+                    case R.id.radioButtonHidroviario:
+                        transporte_stg = "hidroviario";
+                        break;
+                    case R.id.radioButtonAereo:
+                        transporte_stg = "aereo";
+                        break;
+                }
+            }
+        });
+
+        privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonP:
+                        privacidade_stg = "privativo";
+                        break;
+                    case R.id.radioButtonNP:
+                        privacidade_stg = "não privativo";
+                        break;
+                }
+            }
+        });
+
+        transporteUrbano.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonOnibus:
+                        transporteUrbano_stg = "onibus";
+                        break;
+                    case R.id.radioButtonMetro:
+                        transporteUrbano_stg = "metro";
+                        break;
+                    case R.id.radioButtonTaxi:
+                        transporteUrbano_stg = "taxi";
+                        break;
+                    case R.id.radioButtonBonde:
+                        transporteUrbano_stg = "bonde";
+                        break;
+                    case R.id.radioButtonOutros:
+                        transporteUrbano_stg = "outros";
+                        break;
+                }
+            }
+        });
 
     }
 
+    // Evento de clique no botão Salvar
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
+            Entretenimento et = new Entretenimento();
+
+            // Atribuição de valores
             et.setAuth(firebaseUser.getEmail());
             et.setCategoria(editTextCategoria.getText().toString());
             et.setTipo(editTextTipo.getText().toString());
@@ -92,68 +158,18 @@ public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
             et.setCapacidade_equipamento(editTextCapacidadeEquipamento.getText().toString());
             et.setServicos_oferecidos(editTextServicosOferecidos.getText().toString());
             et.setObservacoes(editTextObservacoes.getText().toString());
+            et.setTransporte(transporte_stg);
+            et.setPrivacidade(privacidade_stg);
+            et.setTransporte_urbano(transporteUrbano_stg);
 
-            transporte.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonRodoviario:
-                            et.setTransporte("rodoviario");
-                            break;
-                        case R.id.radioButtonFerroviario:
-                            et.setTransporte("ferroviario");
-                            break;
-                        case R.id.radioButtonHidroviario:
-                            et.setTransporte("hidroviario");
-                            break;
-                        case R.id.radioButtonAereo:
-                            et.setTransporte("areo");
-                            break;
-                    }
-                }
-            });
-
-            privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonP:
-                            et.setPrivacidade("privativo");
-                            break;
-                        case R.id.radioButtonNP:
-                            et.setPrivacidade("não privativo");
-                            break;
-                    }
-                }
-            });
-
-           transporteUrbano.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonOnibus:
-                            et.setTransporte_urbano("onibus");
-                            break;
-                        case R.id.radioButtonMetro:
-                            et.setTransporte_urbano("metro");
-                            break;
-                        case R.id.radioButtonTaxi:
-                            et.setTransporte_urbano("taxi");
-                            break;
-                        case R.id.radioButtonBonde:
-                            et.setTransporte_urbano("bonde");
-                            break;
-                        case R.id.radioButtonOutros:
-                            et.setTransporte_urbano("outros");
-                            break;
-                    }
-                }
-            });
-
+            // Inserção no banco
             firebaseReference.child("entretenimento").push().setValue(et);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dado salvo com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }

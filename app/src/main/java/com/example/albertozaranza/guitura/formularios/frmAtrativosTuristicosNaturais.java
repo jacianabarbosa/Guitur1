@@ -17,25 +17,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-
-    /* COMPONENTES */
-
-    // EditText
-
+    // Declaração EditText
     private EditText editTextCategoria, editTextTipo ,editTextSubtipo, editTextCodigo,
             editTextUF, editTextMunicipio, editTextDistrito, editTextHierarquia, editTextNome,
             editTextLocalizacao, editTextLocalidadeProxima, editTextDistancia, editTextAcessoMaisUtilizado,
             editTextDetalhamento, editTextDescricao, editTextAcessibilidadeTemporal, editTextEquipamento,
             editTextMesesMaiorMovimentacao, editTextIntegraRoteirosCitar, editTextObservacoes, editTextRemissivas;
 
-    private RadioGroup transportes, privacidade, qualidade, acessibilidadeTemporal, tempo,
-            atividadeOcorrente, origemVisitante, integraRoteiro;
+    // Declaração Strings
+    private String transportes_stg = "", privacidade_stg = "", qualidade_stg = "", acessibilidadeTemporal_stg = "",
+            tempo_stg = "", atividadeOcorrente_stg = "", origemVisitante_stg = "", integraRoteiro_stg = "";
 
-    private String transportes_txt, privacidade_txt, qualidade_txt, acessibilidadeTemporal_txt,
-            tempo_txt, atividadeOcorrente_txt, origemVisitante_txt, integraRoteiro_txt;
-
-
+    // Conexão com o Firebase
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -43,11 +37,11 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_atrativos_turisticos_naturais);
 
-        // Declaração e chamada de evento do botão de save
+        // Atribuição e chamada de evento de clique do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
 
-        // Declaração dos editText
+        // Atribuição dos EditText
         editTextCategoria = (EditText) findViewById(R.id.editTextCategoria);
         editTextTipo = (EditText) findViewById(R.id.editTextTipo);
         editTextSubtipo = (EditText) findViewById(R.id.editTextSubtipo);
@@ -70,30 +64,145 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
         editTextRemissivas = (EditText) findViewById(R.id.editTextRemissivas);
 
-        transportes = (RadioGroup) findViewById(R.id.radioGroupTransportes);
-        privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
-        qualidade = (RadioGroup) findViewById(R.id.radioGroupQualidade);
-        acessibilidadeTemporal = (RadioGroup) findViewById(R.id.radioGroupAcessibilidadeTemporal);
-        tempo = (RadioGroup) findViewById(R.id.radioGroupTempo);
-        atividadeOcorrente = (RadioGroup) findViewById(R.id.radioGroupAtividadesOcorrentes);
-        origemVisitante = (RadioGroup) findViewById(R.id.radioGroupOrigemVisitantes);
-        integraRoteiro = (RadioGroup) findViewById(R.id.radioGroupRoteiros);
+        // Atribuição dos RadioGroup
+        RadioGroup transportes = (RadioGroup) findViewById(R.id.radioGroupTransportes);
+        RadioGroup privacidade = (RadioGroup) findViewById(R.id.radioGroupPNP);
+        RadioGroup qualidade = (RadioGroup) findViewById(R.id.radioGroupQualidade);
+        RadioGroup acessibilidadeTemporal = (RadioGroup) findViewById(R.id.radioGroupAcessibilidadeTemporal);
+        RadioGroup tempo = (RadioGroup) findViewById(R.id.radioGroupTempo);
+        RadioGroup atividadeOcorrente = (RadioGroup) findViewById(R.id.radioGroupAtividadesOcorrentes);
+        RadioGroup origemVisitante = (RadioGroup) findViewById(R.id.radioGroupOrigemVisitantes);
+        RadioGroup integraRoteiro = (RadioGroup) findViewById(R.id.radioGroupRoteiros);
 
         transportes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId) {
                     case R.id.radioButtonRodoviario:
-                        transportes_txt = "rodoviario";
+                        transportes_stg = "rodoviario";
                         break;
                     case R.id.radioButtonFerroviario:
-                        transportes_txt = "ferroviario";
+                        transportes_stg = "ferroviario";
                         break;
                     case R.id.radioButtonHidroviario:
-                        transportes_txt = "hidroviario";
+                        transportes_stg = "hidroviario";
                         break;
                     case R.id.radioButtonAereo:
-                        transportes_txt = "aereo";
+                        transportes_stg = "aereo";
+                        break;
+                }
+            }
+        });
+
+        privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonP:
+                        privacidade_stg = "privativo";
+                        break;
+                    case R.id.radioButtonNP:
+                        privacidade_stg = "não privativo";
+                        break;
+                }
+            }
+        });
+
+        qualidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonBomQualidade:
+                        qualidade_stg = "bom";
+                        break;
+                    case R.id.radioButtonRegularQualidade:
+                        qualidade_stg = "regular";
+                        break;
+                    case R.id.radioButtonRuimQualidade:
+                        qualidade_stg = "ruim";
+                        break;
+                }
+            }
+        });
+
+        acessibilidadeTemporal.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonBomQualidade:
+                        acessibilidadeTemporal_stg = "permanente";
+                        break;
+                    case R.id.radioButtonRegularQualidade:
+                        acessibilidadeTemporal_stg = "temporário";
+                        break;
+                }
+            }
+        });
+
+
+        tempo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonHoras:
+                        tempo_stg = "horas";
+                        break;
+                    case R.id.radioButtonDias:
+                        tempo_stg = "3 dias";
+                        break;
+                    case R.id.radioButtonPernoite:
+                        tempo_stg = "pernoite";
+                        break;
+                    case R.id.radioButtonMaisDias:
+                        tempo_stg = "mais de 3 dias";
+                        break;
+                }
+            }
+        });
+
+        atividadeOcorrente.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSimAO:
+                        atividadeOcorrente_stg = "sim";
+                        break;
+                    case R.id.radioButtonNaoAO:
+                        atividadeOcorrente_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        origemVisitante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonInternacional:
+                        origemVisitante_stg = "internacional";
+                        break;
+                    case R.id.radioButtonNacional:
+                        origemVisitante_stg = "nacional";
+                        break;
+                    case R.id.radioButtonRegional:
+                        origemVisitante_stg = "regional";
+                        break;
+                    case R.id.radioButtonLocal:
+                        origemVisitante_stg = "local";
+                        break;
+                }
+            }
+        });
+
+        integraRoteiro.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSim:
+                        integraRoteiro_stg = "sim";
+                        break;
+                    case R.id.radioButtonNao:
+                        integraRoteiro_stg = "não";
                         break;
                 }
             }
@@ -101,13 +210,15 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
 
     }
 
+    // Evento de clique no botão Salvar
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
+            // Instanciação da classe
             AtrativosTuristicosNaturais atn = new AtrativosTuristicosNaturais();
 
-
+            // Atribuição de valores
             atn.setAuth(firebaseUser.getEmail());
             atn.setCategoria(editTextCategoria.getText().toString());
             atn.setTipo(editTextTipo.getText().toString());
@@ -130,125 +241,23 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
             atn.setIntegra_roteiros_citar(editTextIntegraRoteirosCitar.getText().toString());
             atn.setObservacoes(editTextObservacoes.getText().toString());
             atn.setRemissivas(editTextRemissivas.getText().toString());
-            atn.setTransporte(transportes_txt);
+            atn.setTransporte(transportes_stg);
+            atn.setPrivacidade(privacidade_stg);
+            atn.setQualidade(qualidade_stg);
+            atn.setAcessibilidade_temporal(acessibilidadeTemporal_stg);
+            atn.setTempo(tempo_stg);
+            atn.setAtividade_ocorrente(atividadeOcorrente_stg);
+            atn.setOrigem_visitante(origemVisitante_stg);
+            atn.setIntegra_roteiro(integraRoteiro_stg);
 
-            /*privacidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonP:
-                            atn.setPrivacidade("privativo");
-                            break;
-                        case R.id.radioButtonNP:
-                            atn.setPrivacidade("não privativo");
-                            break;
-                    }
-                }
-            });
-
-            qualidade.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonBomQualidade:
-                            atn.setQualidade("bom");
-                            break;
-                        case R.id.radioButtonRegularQualidade:
-                            atn.setQualidade("regular");
-                            break;
-                        case R.id.radioButtonRuimQualidade:
-                            atn.setQualidade("ruim");
-                            break;
-                    }
-                }
-            });
-
-            acessibilidadeTemporal.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonPermanente:
-                            atn.setAcessibilidade_temporal("permanente");
-                            break;
-                        case R.id.radioButtonTemporario:
-                            atn.setAcessibilidade_temporal("temporário");
-                            break;
-                    }
-                }
-            });
-
-            tempo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonHoras:
-                            atn.setTempo("horas");
-                            break;
-                        case R.id.radioButtonDias:
-                            atn.setTempo("3 dias");
-                            break;
-                        case R.id.radioButtonPernoite:
-                            atn.setTempo("pernoite");
-                            break;
-                        case R.id.radioButtonMaisDias:
-                            atn.setTempo("mais de 3 dias");
-                            break;
-                    }
-                }
-            });
-
-            atividadeOcorrente.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSimAO:
-                            atn.setAtividade_ocorrente("sim");
-                            break;
-                        case R.id.radioButtonNaoAO:
-                            atn.setAtividade_ocorrente("não");
-                            break;
-                    }
-                }
-            });
-
-            origemVisitante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonInternacional:
-                            atn.setOrigem_visitante("internacional");
-                            break;
-                        case R.id.radioButtonNacional:
-                            atn.setOrigem_visitante("nacional");
-                            break;
-                        case R.id.radioButtonRegional:
-                            atn.setOrigem_visitante("regional");
-                            break;
-                        case R.id.radioButtonLocal:
-                            atn.setOrigem_visitante("local");
-                            break;
-                    }
-                }
-            });
-
-            integraRoteiro.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSim:
-                            atn.setIntegra_roteiro("sim");
-                            break;
-                        case R.id.radioButtonNao:
-                            atn.setIntegra_roteiro("não");
-                            break;
-                    }
-                }
-            });*/
-
+            // Inserção no banco
             firebaseReference.child("atratitivo_turistico_natural").push().setValue(atn);
 
+            // Mensagem de sucesso
             Toast toast = Toast.makeText(getApplicationContext(), "Dados salvos com sucesso!", Toast.LENGTH_SHORT);
             toast.show();
+
+            // Encerra a intent
             finish();
 
         }
