@@ -42,9 +42,9 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
             editTextFeriadosLocal, editTextDomiciliosAtendidos, editTextEmpresaAbastecimento,
             editTextJornalLocal, editTextObservacoes;
 
-    private String clima_stg, campoRepouso_stg, asfalto_stg, estadoConservasao_stg,
-            orgaoOficial_stg, esgoto_stg, energia_stg, limpezaPublica_stg, estacaoEmissora_stg,
-            radio_stg, planosUrbanisticos_stg;
+    private String clima_stg = "", campoRepouso_stg = "", asfalto_stg = "", estadoConservasao_stg = "",
+            orgaoOficial_stg = "", esgoto_stg = "", energia_stg = "", limpezaPublica_stg = "",
+            estacaoEmissora_stg = "", radio_stg = "", planosUrbanisticos_stg = "";
 
     // Declaração CheckBox
     private CheckBox rodoviario, ferroviario, aereo, federal, estadual, muninicipal,

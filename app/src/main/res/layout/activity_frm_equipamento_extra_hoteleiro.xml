@@ -464,11 +464,11 @@
                 android:id="@+id/radioGroupCondicoesDeAcesso">
 
                 <RadioButton
-                    android:id="@+id/radioButtonBom"
+                    android:id="@+id/radioButtonRuim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Bom" />
+                    android:text="Ruim" />
 
                 <RadioButton
                     android:id="@+id/radioButtonRegular"
@@ -478,11 +478,11 @@
                     android:text="Regular" />
 
                 <RadioButton
-                    android:id="@+id/radioButtonRuim"
+                    android:id="@+id/radioButtonBom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ruim" />
+                    android:text="Bom" />
 
             </RadioGroup>
 
@@ -862,7 +862,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextLavaPratoNumero"
-                android:text="Tanques de Levar Roupa"/>
+                android:text="Tanque(s) de Lavar Roupa"/>
 
             <TextView
                 android:id="@+id/textViewLavaRoupaNumero"
@@ -949,7 +949,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextTomadaNumero"
-                android:text="Cantina"/>
+                android:text="Cantina(s)"/>
 
             <TextView
                 android:id="@+id/textViewCantinaNumero"
@@ -978,7 +978,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextCantinaNumero"
-                android:text="Farmácia"/>
+                android:text="Farmácia(s)"/>
 
             <TextView
                 android:id="@+id/textViewFarmaciaNumero"
@@ -1065,7 +1065,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextBarracaNumero"
-                android:text="Trailer p/ aluguel"/>
+                android:text="Trailer(s) p/ aluguel"/>
 
             <TextView
                 android:id="@+id/textViewTrailerNumero"
@@ -1125,7 +1125,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/editTextOutroNumero"
-                android:text="Aceitam Sócios?" />
+                android:text="Aceitam Sócios?:" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -1157,7 +1157,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/radioGroupAceitaSocio"
-                android:text="Tem Algum Convênio?" />
+                android:text="Tem Algum Convênio?:" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -1188,7 +1188,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/radioGroupTemConvenios"
-                android:text="Qual?" />
+                android:text="Qual?:" />
 
             <EditText
                 android:id="@+id/editTextQualConvenio"

@@ -44,15 +44,15 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
             editTextTerceirizadosFrotaUtilizadaQuantidade, editTextTerceirizadosFrotaUtilizadaCapacidade,
             editTextFrotaUtilizadaTotal, editTextFrotaUtilizadaCapacidadeTotal;
 
-    private RadioGroup passeio;
+    private String passeio_stg = "";
 
     private CheckBox aLaCarte, entregaDomicilio, rodizio, selfService, boate, estacionamento,
             motorista, playGround, somMecanico, telao, televisao, showArtistico, showAoVivo;
 
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    EquipamentoExtraHoteleiroAlimentacaoEntretenimento ehae = new EquipamentoExtraHoteleiroAlimentacaoEntretenimento();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +117,21 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
         editTextFrotaUtilizadaTotal = (EditText) findViewById(R.id.editTextFrotaUtilizadaTotal);
         editTextFrotaUtilizadaCapacidadeTotal = (EditText) findViewById(R.id.editTextFrotaUtilizadaCapacidadeTotal);
 
-        passeio  = (RadioGroup) findViewById(R.id.radioGroupPasseio);
+        RadioGroup passeio  = (RadioGroup) findViewById(R.id.radioGroupPasseio);
+
+        passeio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioPasseioSim:
+                        passeio_stg = "sim";
+                        break;
+                    case R.id.radioPasseioNao:
+                        passeio_stg = "não";
+                        break;
+                }
+            }
+        });
 
         aLaCarte = (CheckBox) findViewById(R.id.checkBoxALaCarte);
         entregaDomicilio = (CheckBox) findViewById(R.id.checkBoxDomicilio);
@@ -138,6 +152,8 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            EquipamentoExtraHoteleiroAlimentacaoEntretenimento ehae = new EquipamentoExtraHoteleiroAlimentacaoEntretenimento();
 
             ehae.setAuth(firebaseUser.getEmail());
             ehae.setCategoria(editTextCategoria.getText().toString());
@@ -194,71 +210,84 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
             ehae.setTerceirizados_frota_utilizada_capacidade(editTextTerceirizadosFrotaUtilizadaCapacidade.getText().toString());
             ehae.setFrota_utilizada_total(editTextFrotaUtilizadaTotal.getText().toString());
             ehae.setFrota_utilizada_capacidade_total(editTextFrotaUtilizadaCapacidadeTotal.getText().toString());
-
-            passeio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioPasseioSim:
-                            ehae.setPasseio("sim");
-                            break;
-                        case R.id.radioPasseioNao:
-                            ehae.setPasseio("não");
-                            break;
-                    }
-                }
-            });
+            ehae.setPasseio(passeio_stg);
 
             if(aLaCarte.isChecked()){
                 ehae.setaLaCarte("true");
+            } else {
+                ehae.setaLaCarte("false");
             }
 
             if(entregaDomicilio.isChecked()){
                 ehae.setEntregaDomicilio("true");
+            } else {
+                ehae.setEntregaDomicilio("false");
             }
 
             if(rodizio.isChecked()){
                 ehae.setRodizio("true");
+            } else {
+                ehae.setRodizio("false");
             }
 
             if(selfService.isChecked()){
                 ehae.setSelfService("true");
+            } else {
+                ehae.setSelfService("false");
             }
 
             if(boate.isChecked()){
                 ehae.setBoate("true");
+            } else {
+                ehae.setBoate("false");
             }
 
             if(estacionamento.isChecked()){
                 ehae.setEstacionamento("true");
+            } else {
+                ehae.setEstacionamento("false");
             }
 
             if(motorista.isChecked()){
                 ehae.setMotorista("true");
+            } else {
+                ehae.setMotorista("false");
             }
 
             if(playGround.isChecked()){
                 ehae.setPlayGround("true");
+            } else {
+                ehae.setPlayGround("false");
             }
 
             if(somMecanico.isChecked()){
                 ehae.setSomMecanico("true");
+            } else {
+                ehae.setSomMecanico("false");
             }
 
             if(telao.isChecked()){
                 ehae.setTelao("true");
+            } else {
+                ehae.setTelao("false");
             }
 
             if(televisao.isChecked()){
                 ehae.setTelevisao("true");
+            } else {
+                ehae.setTelevisao("false");
             }
 
             if(showArtistico.isChecked()){
                 ehae.setShowArtistico("true");
+            } else {
+                ehae.setShowArtistico("false");
             }
 
             if(showAoVivo.isChecked()){
                 ehae.setShowAoVivo("true");
+            } else {
+                ehae.setShowAoVivo("false");
             }
 
             firebaseReference.child("equipamento_extra_hoteleiro_aoe").push().setValue(ehae);

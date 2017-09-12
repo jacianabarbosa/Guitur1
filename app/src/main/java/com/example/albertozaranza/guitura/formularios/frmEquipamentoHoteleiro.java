@@ -54,17 +54,17 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
             editTextTotalOutros, editTextSalarioOutros,
             editTextObservacoes;
 
-    private RadioGroup natureza, cadeiaHoteleira, hotelPousada, cafeManha, diaria, cartao;
+    private String natureza_stg = "", cadeiaHoteleira_stg = "", hotelPousada_stg = "",
+            cafeManha_stg = "", diaria_stg = "", cartao_stg = "";
 
     private CheckBox permanenciaHotelPousada, albergue, ar, banheiro, chuveiroEletrico, cofre,
             fogao, frigobar, guardaRoupa, sala, som, telefone, televisao, ventilador, auditorio,
             bar, telefoneComunitario, estacionamento, piscina, quadra, salao, salaReuniao,
             sauna, somAmbiente, televisaoComunitaria;
 
+    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-    private DatabaseReference firebaseReference = FirebaseDatabase.getInstance().getReference();
-    EquipamentoHoteleiro eht = new EquipamentoHoteleiro();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,12 +168,114 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
         editTextSalarioOutros = (EditText) findViewById(R.id.editTextOutrosSalario);
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoesComplementares);
 
-        natureza = (RadioGroup) findViewById(R.id.radioGroupNatureza);
-        cadeiaHoteleira = (RadioGroup) findViewById(R.id.radioGroupCadeia);
-        hotelPousada = (RadioGroup) findViewById(R.id.radioGroupHotelPousada);
-        cafeManha = (RadioGroup) findViewById(R.id.radioGroupCafeManha);
-        diaria = (RadioGroup) findViewById(R.id.radioGroupIncluidoDiaria);
-        cartao = (RadioGroup) findViewById(R.id.radioGroupAceitaCartao);
+        RadioGroup natureza = (RadioGroup) findViewById(R.id.radioGroupNatureza);
+        RadioGroup cadeiaHoteleira = (RadioGroup) findViewById(R.id.radioGroupCadeia);
+        RadioGroup hotelPousada = (RadioGroup) findViewById(R.id.radioGroupHotelPousada);
+        RadioGroup cafeManha = (RadioGroup) findViewById(R.id.radioGroupCafeManha);
+        RadioGroup diaria = (RadioGroup) findViewById(R.id.radioGroupIncluidoDiaria);
+        RadioGroup cartao = (RadioGroup) findViewById(R.id.radioGroupAceitaCartao);
+
+        natureza.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonHoteis:
+                        natureza_stg = "apart hotel";
+                        break;
+                    case R.id.radioButtonPousadas:
+                        natureza_stg = "pousada";
+                        break;
+                    case R.id.radioButtonPensao:
+                        natureza_stg = "pensão";
+                        break;
+                    case R.id.radioButtonHotel:
+                        natureza_stg = "hotel";
+                        break;
+                    case R.id.radioButtonAlbergues:
+                        natureza_stg = "albergue";
+                        break;
+                    case R.id.radioButtonFlat:
+                        natureza_stg = "flat";
+                        break;
+                    case R.id.radioButtonCasaFamilia:
+                        natureza_stg = "casa de familia";
+                        break;
+                    case R.id.radioButtonOutros:
+                        natureza_stg = "outros";
+                        break;
+                }
+            }
+        });
+
+        cadeiaHoteleira.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonCadeiaSim:
+                        cadeiaHoteleira_stg = "sim";
+                        break;
+                    case R.id.radioButtonCadeiaNao:
+                        cadeiaHoteleira_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        hotelPousada.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonHotel2:
+                        hotelPousada_stg = "hotel";
+                        break;
+                    case R.id.radioButtonPousada:
+                        hotelPousada_stg = "pousada";
+                        break;
+                }
+            }
+        });
+
+        cafeManha.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSimCafe:
+                        cafeManha_stg = "sim";
+                        break;
+                    case R.id.radioButtonNaoCafe:
+                        cafeManha_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        diaria.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSimIncluido:
+                        diaria_stg = "sim";
+                        break;
+                    case R.id.radioButtonNaoIncluido:
+                        diaria_stg = "não";
+                        break;
+                }
+            }
+        });
+
+        cartao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId) {
+                    case R.id.radioButtonSimAceita:
+                        cartao_stg = "sim";
+                        break;
+                    case R.id.radioButtonNaoAceita:
+                        cartao_stg = "não";
+                        break;
+                }
+            }
+        });
 
         permanenciaHotelPousada = (CheckBox) findViewById(R.id.checkBoxPermanenciaHotelPousada);
         albergue = (CheckBox) findViewById(R.id.checkBoxAlbergue);
@@ -206,6 +308,8 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
     private View.OnClickListener btnSalvarAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            EquipamentoHoteleiro eht = new EquipamentoHoteleiro();
 
             eht.setAuth(firebaseUser.getEmail());
             eht.setCategoria(editTextCategoria.getText().toString());
@@ -304,206 +408,161 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
             eht.setTotal_outros(editTextTotalOutros.getText().toString());
             eht.setSalario_outros(editTextSalarioOutros.getText().toString());
             eht.setObservacoes(editTextObservacoes.getText().toString());
-
-            natureza.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonHoteis:
-                            eht.setNatureza("apart hotel");
-                            break;
-                        case R.id.radioButtonPousadas:
-                            eht.setNatureza("pousada");
-                            break;
-                        case R.id.radioButtonPensao:
-                            eht.setNatureza("pensão");
-                            break;
-                        case R.id.radioButtonHotel:
-                            eht.setNatureza("hotel");
-                            break;
-                        case R.id.radioButtonAlbergues:
-                            eht.setNatureza("albergue");
-                            break;
-                        case R.id.radioButtonFlat:
-                            eht.setNatureza("flat");
-                            break;
-                        case R.id.radioButtonCasaFamilia:
-                            eht.setNatureza("casa de familia");
-                            break;
-                        case R.id.radioButtonOutros:
-                            eht.setNatureza("outros");
-                            break;
-                    }
-                }
-            });
-
-            cadeiaHoteleira.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonCadeiaSim:
-                            eht.setCafe_manha("sim");
-                            break;
-                        case R.id.radioButtonCadeiaNao:
-                            eht.setCafe_manha("não");
-                            break;
-                    }
-                }
-            });
-
-            hotelPousada.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonHotel2:
-                            eht.setHotel_pousada("hotel");
-                            break;
-                        case R.id.radioButtonPousada:
-                            eht.setHotel_pousada("pousada");
-                            break;
-                    }
-                }
-            });
-
-            cafeManha.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSimCafe:
-                            eht.setCafe_manha("sim");
-                            break;
-                        case R.id.radioButtonNaoCafe:
-                            eht.setCafe_manha("não");
-                            break;
-                    }
-                }
-            });
-
-            diaria.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSimIncluido:
-                            eht.setDiaria("sim");
-                            break;
-                        case R.id.radioButtonNaoIncluido:
-                            eht.setDiaria("não");
-                            break;
-                    }
-                }
-            });
-
-            cartao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch(checkedId) {
-                        case R.id.radioButtonSimAceita:
-                            eht.setCartao_rg("sim");
-                            break;
-                        case R.id.radioButtonNaoAceita:
-                            eht.setCartao_rg("não");
-                            break;
-                    }
-                }
-            });
+            eht.setNatureza(natureza_stg);
+            eht.setCadeia_hoteleira(cadeiaHoteleira_stg);
+            eht.setHotel_pousada(hotelPousada_stg);
+            eht.setCafe_manha(cafeManha_stg);
+            eht.setDiaria(diaria_stg);
+            eht.setCartao_rg(cartao_stg);
 
             if(permanenciaHotelPousada.isChecked()){
                 eht.setPermanencia_hotel_pousada_checkbox("true");
+            } else {
+                eht.setPermanencia_hotel_pousada_checkbox("false");
             }
 
             if(albergue.isChecked()){
                 eht.setAlbergue_checkbox("true");
+            } else {
+                eht.setAlbergue_checkbox("false");
             }
 
             if(ar.isChecked()){
                 eht.setAr_checkbox("true");
+            } else {
+                eht.setAr_checkbox("false");
             }
 
             if(banheiro.isChecked()){
                 eht.setBanheiro_checkbox("true");
+            } else {
+                eht.setBanheiro_checkbox("false");
             }
 
             if(chuveiroEletrico.isChecked()){
                 eht.setChuveiro_eletrico_checkbox("true");
+            } else {
+                eht.setChuveiro_eletrico_checkbox("false");
             }
 
             if(cofre.isChecked()){
                 eht.setCofre_checkbox("true");
+            } else {
+                eht.setCofre_checkbox("false");
             }
 
             if(fogao.isChecked()){
                 eht.setFogao_checkbox("true");
+            } else {
+                eht.setFogao_checkbox("false");
             }
 
             if(frigobar.isChecked()){
                 eht.setFrigobar_checkbox("true");
+            } else {
+                eht.setFrigobar_checkbox("false");
             }
 
             if(guardaRoupa.isChecked()){
                 eht.setGuarda_roupa_checkbox("true");
+            } else {
+                eht.setGuarda_roupa_checkbox("falsa");
             }
 
             if(sala.isChecked()){
                 eht.setSala_checkbox("true");
+            } else {
+                eht.setSala_checkbox("false");
             }
 
             if(som.isChecked()){
                 eht.setSom_checkbox("true");
+            } else {
+                eht.setSom_checkbox("false");
             }
 
             if(telefone.isChecked()){
                 eht.setTelefone_checkbox("true");
+            } else {
+                eht.setTelefone_checkbox("false");
             }
 
             if(televisao.isChecked()){
                 eht.setTelevisao_checkbox("true");
+            } else {
+                eht.setTelevisao_checkbox("false");
             }
 
             if(ventilador.isChecked()){
                 eht.setVentilador_checkbox("true");
+            } else {
+                eht.setVentilador_checkbox("false");
             }
 
             if(auditorio.isChecked()){
                 eht.setAuditorio_checkbox("true");
+            } else {
+                eht.setAuditorio_checkbox("false");
             }
 
             if(bar.isChecked()){
                 eht.setBar_checkbox("true");
+            } else {
+                eht.setBar_checkbox("false");
             }
 
             if(telefoneComunitario.isChecked()){
                 eht.setTelefone_comunitario_checkbox("true");
+            } else {
+                eht.setTelefone_comunitario_checkbox("false");
             }
 
             if(estacionamento.isChecked()){
                 eht.setEstacionamento_checkbox("true");
+            } else {
+                eht.setEstacionamento_checkbox("false");
             }
 
             if(piscina.isChecked()){
                 eht.setPiscina_checkbox("true");
+            } else {
+                eht.setPiscina_checkbox("false");
             }
+
             if(quadra.isChecked()){
                 eht.setQuadra_checkbox("true");
+            } else {
+                eht.setQuadra_checkbox("false");
             }
 
             if(salao.isChecked()){
                 eht.setSalao_checkbox("true");
+            } else {
+                eht.setSalao_checkbox("false");
             }
 
             if(salaReuniao.isChecked()){
                 eht.setSala_reuniao_checkbox("true");
+            } else {
+                eht.setSala_reuniao_checkbox("false");
             }
 
             if(sauna.isChecked()){
                 eht.setSauna_checkbox("true");
+            } else {
+                eht.setSauna_checkbox("false");
             }
 
             if(somAmbiente.isChecked()){
                 eht.setSom_ambiente_checkbox("true");
+            } else {
+                eht.setSom_ambiente_checkbox("false");
             }
 
             if(televisaoComunitaria.isChecked()){
                 eht.setTelevisao_comunitaria_checkbox("true");
+            } else {
+                eht.setTelefone_comunitario_checkbox("false");
             }
 
             firebaseReference.child("equipamento_hoteleiro").push().setValue(eht);
