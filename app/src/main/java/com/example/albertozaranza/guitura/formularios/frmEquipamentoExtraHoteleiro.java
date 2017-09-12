@@ -1,6 +1,7 @@
 package com.example.albertozaranza.guitura.formularios;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
 
@@ -47,6 +50,10 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_equipamento_extra_hoteleiro);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.ext));
 
         // Declaração e chamada de evento do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
@@ -91,6 +98,9 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
         editTextOutrosNumero = (EditText) findViewById(R.id.editTextOutroNumero);
         editTextConvenioNome = (EditText) findViewById(R.id.editTextQualConvenio);
         editTextObservacao = (EditText) findViewById(R.id.editTextObservacoesComplementares);
+
+        editTextTelefone.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextTelefone));
+        editTextFax.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextFax));
 
         // Atribuição dos RadioGroup
         RadioGroup transporte = (RadioGroup) findViewById(R.id.radioGroupMeiosDeAcesso);
@@ -381,6 +391,11 @@ public class frmEquipamentoExtraHoteleiro extends AppCompatActivity {
             }else {
                 ext.setOutros("false");
             }
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            ext.setData_submissao(s);
 
             // Inserção no banco
             firebaseReference.child("equipamento_extra_hoteleiro_at").push().setValue(ext);

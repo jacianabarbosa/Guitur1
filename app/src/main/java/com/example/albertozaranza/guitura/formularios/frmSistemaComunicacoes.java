@@ -1,6 +1,7 @@
 package com.example.albertozaranza.guitura.formularios;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmSistemaComunicacoes extends AppCompatActivity {
 
@@ -29,6 +32,10 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_sistema_comunicacoes);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.sc));
 
         // Declaração e chamada de evento do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
@@ -76,6 +83,12 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
             sc.setPrivado(editTextPrivado.getText().toString());
             sc.setAtendimento(editTextAtendimento.getText().toString());
             sc.setEspecificacao(editTextEspecificacao.getText().toString());
+
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            sc.setData_submissao(s);
 
             // Inserção no banco
             firebaseReference.child("sistema_comunicacoes").push().setValue(sc);

@@ -10,7 +10,7 @@ public class EquipamentoHoteleiro {
             uf, municipio, distrito, classificacao,
             denominacao, razao_social, razao_proprietario,
             informacoes, endereco, telefone, fax,
-            home_page, email, telefone_reserva, registro_embratur,
+            homepage, email, telefone_reserva, registro_embratur,
             data_inicio, citar,
             apart_sgl_preco, apart_sgl_aposento_com_banheiro, apart_sgl_aposento_sem_banheiro,
             apart_dbl_preco, apart_dbl_com_banheiro, apart_dbl_sem_banheiro,
@@ -40,7 +40,7 @@ public class EquipamentoHoteleiro {
             total_porteiro, salario_porteiro,
             total_recepcionista, salario_recepcionista,
             total_outros, salario_outros,
-            observacoes, auth;
+            observacoes, auth, data_submissao;
 
     private  String natureza, cadeia_hoteleira, hotel_pousada, cafe_manha, diaria, cartao_rg;
 
@@ -176,12 +176,12 @@ public class EquipamentoHoteleiro {
         this.fax = fax;
     }
 
-    public String getHome_page() {
-        return home_page;
+    public String getHomepage() {
+        return homepage;
     }
 
-    public void setHome_page(String home_page) {
-        this.home_page = home_page;
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
     }
 
     public String getEmail() {
@@ -1054,5 +1054,13 @@ public class EquipamentoHoteleiro {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

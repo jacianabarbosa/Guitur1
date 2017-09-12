@@ -8,7 +8,7 @@ public class SistemaTransportes {
 
     private String categoria, tipo, subtipo, codigo, uf, municipio,
             distrito, denominacao, endereco, trecho, empresa, extensao,
-            km, tempo, horas, tipo_veiculo, horarios, auth;
+            km, tempo, horas, tipo_veiculo, horarios, auth, data_submissao;
 
     public SistemaTransportes() {
     }
@@ -155,5 +155,13 @@ public class SistemaTransportes {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

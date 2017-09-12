@@ -1,5 +1,6 @@
 package com.example.albertozaranza.guitura.formularios;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
+import java.util.Date;
+
+public class frmInfraestruturaApoioTuristico extends AppCompatActivity {
 
     // Declaração EditText
     private EditText editTextCategoria, editTextCodigo,
@@ -56,7 +59,11 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_frm_infra_estrutura_apoio_turistico);
+        setContentView(R.layout.activity_frm_infraestrutura_apoio_turistico);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.inf));
 
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
@@ -376,7 +383,7 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
             inf.setNome_prefeito(editTextNomePrefeito.getText().toString());
             inf.setEndereco_prefeitura(editTextEnderecoPrefeitura.getText().toString());
             inf.setEmail_prefeitura(editTextEmailPrefeitura.getText().toString());
-            inf.setHome_page_prefeitura(editTextHomePagePrefeitura.getText().toString());
+            inf.setHomepage_prefeitura(editTextHomePagePrefeitura.getText().toString());
             inf.setNome_turismo(editTextNomeTurismo.getText().toString());
             inf.setEndereco_turismo(editTextEnderecoTurismo.getText().toString());
             inf.setCargo_turismo(editTextCargoTurismo.getText().toString());
@@ -483,6 +490,11 @@ public class frmInfraEstruturaApoioTuristico extends AppCompatActivity {
             }else {
                 inf.setRio("false");
             }
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            inf.setData_submissao(s);
 
             firebaseReference.child("infraestrutura_de_apoio_turistico").push().setValue(inf);
 

@@ -9,7 +9,8 @@ public class AtrativosTuristicosNaturais {
     private String categoria, tipo, subtipo, codigo, uf, municipio,
             distrito, hierarquia, nome, localizacao, localidade_proxima,
             distancia, acesso_mais_utilizado, detalhamento, descricao, acessibilidade_temporal_citar,
-            equipamento, meses_maior_movimentacao, integra_roteiros_citar, observacoes, remissivas, auth;
+            equipamento, meses_maior_movimentacao, integra_roteiros_citar, observacoes, remissivas,
+            auth, data_submissao, atividade_ocorrente_citar;
 
     private String transporte, privacidade, qualidade, acessibilidade_temporal, tempo,
             atividade_ocorrente, origem_visitante, integra_roteiro;
@@ -233,7 +234,6 @@ public class AtrativosTuristicosNaturais {
         this.integra_roteiros_citar = integra_roteiros_citar;
     }
 
-
     public String getObservacoes() {
         return observacoes;
     }
@@ -256,5 +256,21 @@ public class AtrativosTuristicosNaturais {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
+    }
+
+    public String getAtividade_ocorrente_citar() {
+        return atividade_ocorrente_citar;
+    }
+
+    public void setAtividade_ocorrente_citar(String atividade_ocorrente_citar) {
+        this.atividade_ocorrente_citar = atividade_ocorrente_citar;
     }
 }

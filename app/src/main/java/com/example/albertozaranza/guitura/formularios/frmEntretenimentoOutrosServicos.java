@@ -1,6 +1,7 @@
 package com.example.albertozaranza.guitura.formularios;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
 
@@ -35,6 +38,10 @@ public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_entretenimento_outros_servicos);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.ent));
 
         // Atribuição e chamada de evento do evento de clique do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
@@ -62,6 +69,9 @@ public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
         editTextCapacidadeEquipamento = (EditText) findViewById(R.id.editTextCapacidadeEquipamento);
         editTextServicosOferecidos = (EditText) findViewById(R.id.editTextServicosOferecidos);
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
+
+        editTextTelefone.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextTelefone));
+        editTextFax.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextFax));
 
         // Atribuição dos RadioGroup
         RadioGroup transporte = (RadioGroup) findViewById(R.id.radioGroupTransportesAcesso);
@@ -161,6 +171,11 @@ public class frmEntretenimentoOutrosServicos extends AppCompatActivity {
             et.setTransporte(transporte_stg);
             et.setPrivacidade(privacidade_stg);
             et.setTransporte_urbano(transporteUrbano_stg);
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            et.setData_submissao(s);
 
             // Inserção no banco
             firebaseReference.child("entretenimento").push().setValue(et);

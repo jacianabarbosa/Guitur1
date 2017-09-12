@@ -15,7 +15,7 @@ public class EquipamentoExtraHoteleiro {
             prato, prato_numero, roupa, roupa_numero, iluminacao, iluminacao_numero, tomada, tomada_numero,
             cantina, cantina_numero, farmacia, farmacia_numero, restaurante, restaurante_numero,
             barraca, barraca_numero, trailer, trailer_numero, outros, outros_numero, socios, convenio,
-            convenio_nome, observacao, auth;
+            convenio_nome, observacao, auth, data_submissao;
 
     public EquipamentoExtraHoteleiro() {
     }
@@ -514,5 +514,13 @@ public class EquipamentoExtraHoteleiro {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

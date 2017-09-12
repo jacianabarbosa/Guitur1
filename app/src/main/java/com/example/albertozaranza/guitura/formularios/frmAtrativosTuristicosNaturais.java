@@ -1,6 +1,7 @@
 package com.example.albertozaranza.guitura.formularios;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
 
     // Declaração EditText
@@ -22,7 +25,8 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
             editTextUF, editTextMunicipio, editTextDistrito, editTextHierarquia, editTextNome,
             editTextLocalizacao, editTextLocalidadeProxima, editTextDistancia, editTextAcessoMaisUtilizado,
             editTextDetalhamento, editTextDescricao, editTextAcessibilidadeTemporal, editTextEquipamento,
-            editTextMesesMaiorMovimentacao, editTextIntegraRoteirosCitar, editTextObservacoes, editTextRemissivas;
+            editTextMesesMaiorMovimentacao, editTextIntegraRoteirosCitar, editTextObservacoes, editTextRemissivas,
+            editTextAtividadeOcorrenteCitar;
 
     // Declaração Strings
     private String transportes_stg = "", privacidade_stg = "", qualidade_stg = "", acessibilidadeTemporal_stg = "",
@@ -36,6 +40,10 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_atrativos_turisticos_naturais);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.atn));
 
         // Atribuição e chamada de evento de clique do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
@@ -63,6 +71,7 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
         editTextIntegraRoteirosCitar = (EditText) findViewById(R.id.editTextIntegraRoteirosCitar);
         editTextObservacoes = (EditText) findViewById(R.id.editTextObservacoes);
         editTextRemissivas = (EditText) findViewById(R.id.editTextRemissivas);
+        editTextAtividadeOcorrenteCitar = (EditText) findViewById(R.id.editTextAtividadeOcorrenteCitar);
 
         // Atribuição dos RadioGroup
         RadioGroup transportes = (RadioGroup) findViewById(R.id.radioGroupTransportes);
@@ -244,11 +253,17 @@ public class frmAtrativosTuristicosNaturais extends AppCompatActivity {
             atn.setTransporte(transportes_stg);
             atn.setPrivacidade(privacidade_stg);
             atn.setQualidade(qualidade_stg);
-            atn.setAcessibilidade_temporal(acessibilidadeTemporal_stg);
+            atn.setAcessibilidade_temporal_citar(acessibilidadeTemporal_stg);
             atn.setTempo(tempo_stg);
             atn.setAtividade_ocorrente(atividadeOcorrente_stg);
             atn.setOrigem_visitante(origemVisitante_stg);
             atn.setIntegra_roteiro(integraRoteiro_stg);
+            atn.setAtividade_ocorrente_citar(editTextAtividadeOcorrenteCitar.getText().toString());
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            atn.setData_submissao(s);
 
             // Inserção no banco
             firebaseReference.child("atratitivo_turistico_natural").push().setValue(atn);

@@ -16,6 +16,17 @@
     </string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+
     <string name="user">Usuário:</string>
     <string name="password">Senha:</string>
+
+    <string name="at">Atrativos Turísticos</string>
+    <string name="atn">Atrativos Turísticos Naturais</string>
+    <string name="ent">Entretenimento</string>
+    <string name="ext">Equipamento Extra-Hoteleiro (AT)</string>
+    <string name="ehea">Equipamento Extra-Hoteleiro (AOE)</string>
+    <string name="eh">Equipamento Hoteleiro</string>
+    <string name="inf">Infraestrutura de Apoio Turístico</string>
+    <string name="sc">Sistema de Comunicações</string>
+    <string name="st">Sistema de Transportes</string>
 </resources>

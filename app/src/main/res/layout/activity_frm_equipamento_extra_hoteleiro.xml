@@ -317,7 +317,7 @@
                 android:layout_below="@+id/textViewEmail"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/textViewLocalidadeProxima"
@@ -361,7 +361,7 @@
                 android:layout_below="@+id/textViewDistancia"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewMeiosAcesso"
@@ -568,7 +568,7 @@
                 android:layout_below="@+id/textViewAreaTotal"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewCapacidadeTotal"
@@ -590,7 +590,7 @@
                 android:layout_below="@+id/textViewCapacidadeTotal"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewPropietario"
@@ -681,7 +681,7 @@
                 android:layout_below="@+id/textViewADMNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxSanitario"
@@ -710,7 +710,7 @@
                 android:layout_below="@+id/textViewSanitariosNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxQuente"
@@ -739,7 +739,7 @@
                 android:layout_below="@+id/textViewQuenteNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxFrio"
@@ -768,7 +768,7 @@
                 android:layout_below="@+id/textViewFrioNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxQuadra"
@@ -797,7 +797,7 @@
                 android:layout_below="@+id/textViewQuadraNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxChurrascaria"
@@ -826,7 +826,7 @@
                 android:layout_below="@+id/textViewChurrascariaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxPrato"
@@ -855,7 +855,7 @@
                 android:layout_below="@+id/textViewLavaPratoNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoupa"
@@ -884,7 +884,7 @@
                 android:layout_below="@+id/textViewLavaRoupaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxIluminacao"
@@ -913,7 +913,7 @@
                 android:layout_below="@+id/textViewIluminacaoNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxTomada"
@@ -942,7 +942,7 @@
                 android:layout_below="@+id/textViewTomadaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxCantina"
@@ -971,7 +971,7 @@
                 android:layout_below="@+id/textViewCantinaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxFarmacia"
@@ -1000,7 +1000,7 @@
                 android:layout_below="@+id/textViewFarmaciaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxRestaurante"
@@ -1029,7 +1029,7 @@
                 android:layout_below="@+id/textViewRestauranteNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxBarraca"
@@ -1058,7 +1058,7 @@
                 android:layout_below="@+id/textViewBarracaNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxTrailer"
@@ -1087,7 +1087,7 @@
                 android:layout_below="@+id/textViewTrailerNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxOutros"
@@ -1116,7 +1116,7 @@
                 android:layout_below="@+id/textViewOutroNumero"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewAceitamSocios"

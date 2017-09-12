@@ -1,5 +1,6 @@
 package com.example.albertozaranza.guitura.formularios;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmEquipamentoHoteleiro extends AppCompatActivity {
 
@@ -70,6 +73,10 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_equipamento_hoteleiro);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.eh));
 
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
@@ -327,7 +334,7 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
             eht.setEndereco(editTextEndereco.getText().toString());
             eht.setTelefone(editTextTelefone.getText().toString());
             eht.setFax(editTextFax.getText().toString());
-            eht.setHome_page(editTextHomePage.getText().toString());
+            eht.setHomepage(editTextHomePage.getText().toString());
             eht.setEmail(editTextEmail.getText().toString());
             eht.setTelefone_reserva(editTextTelefoneReserva.getText().toString());
             eht.setRegistro_embratur(editTextRegistroEmbratur.getText().toString());
@@ -564,6 +571,11 @@ public class frmEquipamentoHoteleiro extends AppCompatActivity {
             } else {
                 eht.setTelefone_comunitario_checkbox("false");
             }
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            eht.setData_submissao(s);
 
             firebaseReference.child("equipamento_hoteleiro").push().setValue(eht);
 

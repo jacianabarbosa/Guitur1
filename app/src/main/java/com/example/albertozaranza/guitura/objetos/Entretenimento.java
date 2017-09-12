@@ -10,7 +10,7 @@ public class Entretenimento {
             distrito, denominacao, localizacao, telefone, fax, homepage,
             email, registro, localidade_proxima, distancia, transporte,
             privacidade, transporte_urbano, localizacao_proxima, caracterizacao_equipamento,
-            capacidade_equipamento, servicos_oferecidos, observacoes, auth;
+            capacidade_equipamento, servicos_oferecidos, observacoes, auth, data_submissao;
 
     public Entretenimento() {
     }
@@ -213,5 +213,17 @@ public class Entretenimento {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getLocalizacao_proxima() {
+        return localizacao_proxima;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

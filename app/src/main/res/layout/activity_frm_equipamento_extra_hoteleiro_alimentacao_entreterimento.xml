@@ -206,7 +206,7 @@
                 android:layout_below="@+id/textViewNumeroOrdem"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewNomeEstabelecimento"
@@ -228,7 +228,7 @@
                 android:layout_below="@+id/textViewNomeEstabelecimento"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewInicioFuncionamento"
@@ -338,7 +338,7 @@
                 android:layout_below="@+id/textViewTotalPessoasTrabalhando"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewEspecializacao"
@@ -404,7 +404,7 @@
                 android:layout_below="@+id/textViewNumerosMesas"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFormaAtendimento"
@@ -580,7 +580,7 @@
                 android:layout_below="@+id/textViewTotalMotorista"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioMotorista"
@@ -603,7 +603,7 @@
                 android:layout_below="@+id/textViewSalarioMotorista"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewGuias"
@@ -635,7 +635,7 @@
                 android:layout_below="@+id/textViewTotalGuias"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioGuias"
@@ -658,7 +658,7 @@
                 android:layout_below="@+id/textViewSalarioGuias"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewManobrista"
@@ -690,7 +690,7 @@
                 android:layout_below="@+id/textViewTotalManobrista"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioManobrista"
@@ -713,7 +713,7 @@
                 android:layout_below="@+id/textViewSalarioManobrista"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSeguranca"
@@ -745,7 +745,7 @@
                 android:layout_below="@+id/textViewTotalSeguranca"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioSeguranca"
@@ -768,7 +768,7 @@
                 android:layout_below="@+id/textViewSalarioSeguranca"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewAdministrativos"
@@ -800,7 +800,7 @@
                 android:layout_below="@+id/textViewTotalAdministrativos"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioAdministrativos"
@@ -823,7 +823,7 @@
                 android:layout_below="@+id/textViewSalarioAdministrativos"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewGarcons"
@@ -855,7 +855,7 @@
                 android:layout_below="@+id/textViewTotalGarcons"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioGarcons"
@@ -878,7 +878,7 @@
                 android:layout_below="@+id/textViewSalarioGarcons"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewCozinheiros"
@@ -910,7 +910,7 @@
                 android:layout_below="@+id/textViewTotalCozinheiros"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioCozinheiros"
@@ -932,7 +932,7 @@
                 android:layout_below="@+id/textViewSalarioCozinheiros"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewOutros"
@@ -964,7 +964,7 @@
                 android:layout_below="@+id/textViewTotalOutros"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewSalarioOutros"
@@ -987,7 +987,7 @@
                 android:layout_below="@+id/textViewSalarioOutros"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraVeiculos"
@@ -1018,7 +1018,7 @@
                 android:layout_below="@+id/textViewLocadoraGrupos"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraTotalGrupo"
@@ -1040,7 +1040,7 @@
                 android:layout_below="@+id/textViewLocadoraTotalGrupo"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraModelos"
@@ -1062,7 +1062,7 @@
                 android:layout_below="@+id/textViewLocadoraModelos"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraTotalModelos"
@@ -1084,7 +1084,7 @@
                 android:layout_below="@+id/textViewLocadoraTotalModelos"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraDiaria"
@@ -1106,7 +1106,7 @@
                 android:layout_below="@+id/textViewLocadoraDiaria"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
 
             <TextView
@@ -1129,7 +1129,7 @@
                 android:layout_below="@+id/textViewLocadoraTotalDiaria"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraKMAdicional"
@@ -1151,7 +1151,7 @@
                 android:layout_below="@+id/textViewLocadoraKMAdicional"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewLocadoraTotalKMAdicional"
@@ -1173,7 +1173,7 @@
                 android:layout_below="@+id/textViewLocadoraTotalKMAdicional"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFrotaVeiculos"
@@ -1213,7 +1213,7 @@
                 android:layout_below="@+id/textViewProprioQuantidade"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFrotaTerceirizados"
@@ -1245,7 +1245,7 @@
                 android:layout_below="@+id/textViewQuantidadeTerceirizados"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFrotaTotais"
@@ -1277,7 +1277,7 @@
                 android:layout_below="@+id/textViewFrotaTotal"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewAgenciaTurismo"
@@ -1380,7 +1380,7 @@
                 android:layout_below="@+id/textViewProprioQuantidadeCondicao"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewProprioCapacidade"
@@ -1402,7 +1402,7 @@
                 android:layout_below="@+id/textViewProprioCapacidade"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewTerceirizadosFrotaUtilizada"
@@ -1433,7 +1433,7 @@
                 android:layout_below="@+id/textViewTerceirizadosFrotaUtilizadaQuantidade"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewTerceirizadosFrotaUtilizadaCapacidade"
@@ -1455,7 +1455,7 @@
                 android:layout_below="@+id/textViewTerceirizadosFrotaUtilizadaCapacidade"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFrotaUtilizadaTotal"
@@ -1486,7 +1486,7 @@
                 android:layout_below="@+id/textViewFrotaUtilizadaQuantidadeTotal"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewFrotaUtilizadaCapacidadeTotal"
@@ -1508,7 +1508,7 @@
                 android:layout_below="@+id/textViewFrotaUtilizadaCapacidadeTotal"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/buttonSalvar"

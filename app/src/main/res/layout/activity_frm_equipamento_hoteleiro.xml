@@ -1296,7 +1296,7 @@
                 android:layout_below="@+id/textViewPermancenciaHotelPousada"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxPermanenciaHotelPousada"
@@ -1625,7 +1625,7 @@
                 android:layout_below="@+id/textViewPermanenciaFlatPartHotel"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/checkBoxAlbergue"
@@ -1804,7 +1804,7 @@
                 android:layout_below="@+id/textViewPermanenciaQuarto"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewCapacidadeHoteleira"

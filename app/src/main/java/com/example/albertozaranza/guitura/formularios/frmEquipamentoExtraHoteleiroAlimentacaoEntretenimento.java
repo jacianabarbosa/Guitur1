@@ -1,5 +1,6 @@
 package com.example.albertozaranza.guitura.formularios;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCompatActivity {
 
@@ -58,6 +61,10 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_equipamento_extra_hoteleiro_alimentacao_entreterimento);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.ehea));
 
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
         btnSalvar.setOnClickListener(btnSalvarAction);
@@ -116,6 +123,10 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
         editTextTerceirizadosFrotaUtilizadaCapacidade = (EditText) findViewById(R.id.editTextTerceirizadosFrotaUtilizadaCapacidade);
         editTextFrotaUtilizadaTotal = (EditText) findViewById(R.id.editTextFrotaUtilizadaTotal);
         editTextFrotaUtilizadaCapacidadeTotal = (EditText) findViewById(R.id.editTextFrotaUtilizadaCapacidadeTotal);
+
+        editTextTelefone.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextTelefone));
+        editTextFax.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextFax));
+        editTextTotalPessoasTrabalhando.addTextChangedListener(Mask.insert(Mask.HOUR_MASK, editTextTotalPessoasTrabalhando));
 
         RadioGroup passeio  = (RadioGroup) findViewById(R.id.radioGroupPasseio);
 
@@ -289,6 +300,11 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
             } else {
                 ehae.setShowAoVivo("false");
             }
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            ehae.setData_submissao(s);
 
             firebaseReference.child("equipamento_extra_hoteleiro_aoe").push().setValue(ehae);
 

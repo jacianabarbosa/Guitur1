@@ -1,5 +1,6 @@
 package com.example.albertozaranza.guitura.formularios;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class frmSistemaTransporte extends AppCompatActivity {
 
@@ -31,6 +34,10 @@ public class frmSistemaTransporte extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_sistema_transporte);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(this.getResources().getString(R.string.st));
 
         // Declaração e chamada de evento do botão de save
         Button btnSalvar = (Button) findViewById(R.id.buttonSalvar);
@@ -84,6 +91,13 @@ public class frmSistemaTransporte extends AppCompatActivity {
             st.setHoras(editTextHoras.getText().toString());
             st.setTipo_veiculo(editTextTipoVeiculo.getText().toString());
             st.setHorarios(editTextHorarios.getText().toString());
+
+            editTextHoras.addTextChangedListener(Mask.insert(Mask.HOUR_MASK, editTextHoras));
+
+            Date hora = new Date();
+            hora.getTime();
+            String s = String.valueOf(hora);
+            st.setData_submissao(s);
 
             // Inserção no banco
             firebaseReference.child("sistema_transporte").push().setValue(st);

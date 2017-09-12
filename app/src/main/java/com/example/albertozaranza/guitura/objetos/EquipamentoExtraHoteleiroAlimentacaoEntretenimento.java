@@ -30,7 +30,7 @@ public class EquipamentoExtraHoteleiroAlimentacaoEntretenimento {
             citar_passeio,
             proprio_quantidade_condicao, proprio_capacidade,
             terceirizados_frota_utilizada_quantidade, terceirizados_frota_utilizada_capacidade,
-            frota_utilizada_total, frota_utilizada_capacidade_total, auth;
+            frota_utilizada_total, frota_utilizada_capacidade_total, auth, data_submissao;
 
 
 
@@ -592,5 +592,13 @@ public class EquipamentoExtraHoteleiroAlimentacaoEntretenimento {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

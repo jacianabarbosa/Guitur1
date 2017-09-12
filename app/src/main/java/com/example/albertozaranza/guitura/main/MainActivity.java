@@ -15,7 +15,7 @@ import com.example.albertozaranza.guitura.formularios.frmEntretenimentoOutrosSer
 import com.example.albertozaranza.guitura.formularios.frmEquipamentoExtraHoteleiro;
 import com.example.albertozaranza.guitura.formularios.frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento;
 import com.example.albertozaranza.guitura.formularios.frmEquipamentoHoteleiro;
-import com.example.albertozaranza.guitura.formularios.frmInfraEstruturaApoioTuristico;
+import com.example.albertozaranza.guitura.formularios.frmInfraestruturaApoioTuristico;
 import com.example.albertozaranza.guitura.formularios.frmSistemaComunicacoes;
 import com.example.albertozaranza.guitura.formularios.frmSistemaTransporte;
 import com.google.firebase.auth.FirebaseAuth;
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnInfraestruturaAction = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(MainActivity.this, frmInfraEstruturaApoioTuristico.class));
+            startActivity(new Intent(MainActivity.this, frmInfraestruturaApoioTuristico.class));
         }
     };
 

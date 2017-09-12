@@ -21,7 +21,7 @@
         <activity android:name=".formularios.frmEquipamentoExtraHoteleiro" />
         <activity android:name=".formularios.frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento" />
         <activity android:name=".formularios.frmEntretenimentoOutrosServicos" />
-        <activity android:name=".formularios.frmInfraEstruturaApoioTuristico" />
+        <activity android:name=".formularios.frmInfraestruturaApoioTuristico" />
         <activity android:name=".formularios.frmSistemaTransporte" />
         <activity android:name=".formularios.frmSistemaComunicacoes" />
         <activity android:name=".accounts.LoginActivity" android:screenOrientation="portrait" >

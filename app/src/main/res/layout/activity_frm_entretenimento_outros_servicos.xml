@@ -228,7 +228,7 @@
                 android:layout_below="@+id/textViewTelefone"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
 
             <TextView
@@ -295,7 +295,7 @@
                 android:layout_below="@+id/textViewEmail"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/textViewRegistroEmbratur"
@@ -361,7 +361,7 @@
                 android:layout_below="@+id/textViewDistancia"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewMeiosAcesso"

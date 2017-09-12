@@ -8,7 +8,7 @@ public class SistemaComunicacoes {
 
     private String categoria, tipo, subtipo, codigo, uf, municipio,
             distrito, ordem, estabelecimento, endereco, publico, privado,
-            atendimento, especificacao, auth;
+            atendimento, especificacao, auth, data_submissao;
 
     public SistemaComunicacoes() {
     }
@@ -131,5 +131,13 @@ public class SistemaComunicacoes {
 
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }

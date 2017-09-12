@@ -24,10 +24,10 @@ public class Infraestrutura {
             dez_maxima, dez_media, dez_minima,
             distancia_sede, extensao, nome_prefeito,
             endereco_prefeitura, email_prefeitura,
-            home_page_prefeitura, nome_turismo, endereco_turismo,
+            homepage_prefeitura, nome_turismo, endereco_turismo,
             cargo_turismo, atividades, caracterizacao_turistica,
             feriados_local, domicilios_atendidos, empresa_abastecimento,
-            jornal_local, observacoes, auth;
+            jornal_local, observacoes, auth, data_submissao;
 
     private String clima, campo_repouso, asfalto, estado_conservasao,
             orgao_oficial, esgoto, energia, limpeza_publica, estacao_emissora,
@@ -471,12 +471,12 @@ public class Infraestrutura {
         this.email_prefeitura = email_prefeitura;
     }
 
-    public String getHome_page_prefeitura() {
-        return home_page_prefeitura;
+    public String getHomepage_prefeitura() {
+        return homepage_prefeitura;
     }
 
-    public void setHome_page_prefeitura(String home_page_prefeitura) {
-        this.home_page_prefeitura = home_page_prefeitura;
+    public void setHomepage_prefeitura(String homepage_prefeitura) {
+        this.homepage_prefeitura = homepage_prefeitura;
     }
 
     public String getNome_turismo() {
@@ -765,5 +765,13 @@ public class Infraestrutura {
 
     public void setRio(String rio) {
         this.rio = rio;
+    }
+
+    public String getData_submissao() {
+        return data_submissao;
+    }
+
+    public void setData_submissao(String data_submissao) {
+        this.data_submissao = data_submissao;
     }
 }
