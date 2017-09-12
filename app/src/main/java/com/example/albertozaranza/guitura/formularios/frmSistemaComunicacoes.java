@@ -84,7 +84,6 @@ public class frmSistemaComunicacoes extends AppCompatActivity {
             sc.setAtendimento(editTextAtendimento.getText().toString());
             sc.setEspecificacao(editTextEspecificacao.getText().toString());
 
-
             Date hora = new Date();
             hora.getTime();
             String s = String.valueOf(hora);

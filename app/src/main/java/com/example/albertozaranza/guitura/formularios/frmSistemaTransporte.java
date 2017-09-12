@@ -92,8 +92,6 @@ public class frmSistemaTransporte extends AppCompatActivity {
             st.setTipo_veiculo(editTextTipoVeiculo.getText().toString());
             st.setHorarios(editTextHorarios.getText().toString());
 
-            editTextHoras.addTextChangedListener(Mask.insert(Mask.HOUR_MASK, editTextHoras));
-
             Date hora = new Date();
             hora.getTime();
             String s = String.valueOf(hora);

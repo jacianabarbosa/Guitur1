@@ -250,7 +250,7 @@
                 android:layout_below="@+id/textViewTelefone"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
 
             <TextView
@@ -273,7 +273,7 @@
                 android:layout_below="@+id/textViewFax"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textViewHomePage"

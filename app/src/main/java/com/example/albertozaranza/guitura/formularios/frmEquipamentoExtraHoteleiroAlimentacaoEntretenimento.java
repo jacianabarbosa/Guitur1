@@ -126,7 +126,6 @@ public class frmEquipamentoExtraHoteleiroAlimentacaoEntretenimento extends AppCo
 
         editTextTelefone.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextTelefone));
         editTextFax.addTextChangedListener(Mask.insert(Mask.CELULAR_MASK, editTextFax));
-        editTextTotalPessoasTrabalhando.addTextChangedListener(Mask.insert(Mask.HOUR_MASK, editTextTotalPessoasTrabalhando));
 
         RadioGroup passeio  = (RadioGroup) findViewById(R.id.radioGroupPasseio);
 
